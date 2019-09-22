@@ -1,0 +1,2 @@
+include ':app'
+include ':socket-client',':socket-common-interface','socket-core'
