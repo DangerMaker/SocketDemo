@@ -20,7 +20,7 @@ public class STradePacketKeyExchangeResp {
     public byte btAES128 = 0;
     public byte[] btReserved = new byte[3];
     public int[] dwReserved = new int[9];
-    public byte szGX = 0; //??
+    public byte szGX;
     public byte[] gx;
     public byte empty = 0;
 
@@ -33,13 +33,15 @@ public class STradePacketKeyExchangeResp {
         for (int i = 0; i < 9; i++) {
             dwReserved[i] = buffer.getInt();
         }
-        buffer.get(szGX);
-        gx = new byte[data.length - getLength()];
+
+//        szGX = buffer.get();
+        gx = new byte[data.length - getLength() - 1];
         buffer.get(gx);
+        empty = buffer.get();
     }
 
     public int getLength() {
-        return 4 + 1 + 3 + 4 * 9 + 1 + 1;
+        return 4 + 1 + 3 + 4 * 9;
     }
 
     @Override
@@ -50,7 +52,7 @@ public class STradePacketKeyExchangeResp {
                 ", btReserved=" + Arrays.toString(btReserved) +
                 ", dwReserved=" + Arrays.toString(dwReserved) +
                 ", szGX=" + szGX +
-                ", gx=" + BytesUtils.toHexStringForLog(OpensslHelper.genPublicKey()) +
+                ", gx=" + BytesUtils.toHexStringForLog(gx) +
                 ", empty=" + empty +
                 '}';
     }
