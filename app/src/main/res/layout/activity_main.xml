@@ -11,14 +11,28 @@
         android:id="@+id/start"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="start"
+        android:text="Get VerificationCode"
+        />
+
+
+    <Button
+        android:id="@+id/start1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Get KeyExchange"
         />
 
     <Button
         android:id="@+id/send"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="send"
+        android:text="test"
+        />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
         />
 
 </LinearLayout>

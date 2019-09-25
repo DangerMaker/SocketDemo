@@ -31,7 +31,7 @@ public class ReaderImpl extends AbsReader {
                 int length = Math.min(mRemainingBuf.remaining(), headerLength);
                 headBuf.put(mRemainingBuf.array(), 0, length);
                 if (length < headerLength) {
-                    //there are no data left
+                    //there are no com.socket.demo.data left
                     mRemainingBuf = null;
                     readHeaderFromChannel(headBuf, headerLength - length);
                 } else {
@@ -52,7 +52,7 @@ public class ReaderImpl extends AbsReader {
                 if (bodyLength > mOkOptions.getMaxReadDataMB() * 1024 * 1024) {
                     throw new ReadException("Need to follow the transmission protocol.\r\n" +
                             "Please check the client/server code.\r\n" +
-                            "According to the packet header data in the transport protocol, the package length is " + bodyLength + " Bytes.\r\n" +
+                            "According to the packet header com.socket.demo.data in the transport protocol, the package length is " + bodyLength + " Bytes.\r\n" +
                             "You need check your <ReaderProtocol> definition");
                 }
                 ByteBuffer byteBuffer = ByteBuffer.allocate(bodyLength);
@@ -63,19 +63,19 @@ public class ReaderImpl extends AbsReader {
                     byteBuffer.put(mRemainingBuf.array(), bodyStartPosition, length);
                     mRemainingBuf.position(bodyStartPosition + length);
                     if (length == bodyLength) {
-                        if (mRemainingBuf.remaining() > 0) {//there are data left
+                        if (mRemainingBuf.remaining() > 0) {//there are com.socket.demo.data left
                             ByteBuffer temp = ByteBuffer.allocate(mRemainingBuf.remaining());
                             temp.order(mOkOptions.getReadByteOrder());
                             temp.put(mRemainingBuf.array(), mRemainingBuf.position(), mRemainingBuf.remaining());
                             mRemainingBuf = temp;
-                        } else {//there are no data left
+                        } else {//there are no com.socket.demo.data left
                             mRemainingBuf = null;
                         }
-                        //cause this time data from remaining buffer not from channel.
+                        //cause this time com.socket.demo.data from remaining buffer not from channel.
                         originalData.setBodyBytes(byteBuffer.array());
                         mStateSender.sendBroadcast(IOAction.ACTION_READ_COMPLETE, originalData);
                         return;
-                    } else {//there are no data left in buffer and some data pieces in channel
+                    } else {//there are no com.socket.demo.data left in buffer and some com.socket.demo.data pieces in channel
                         mRemainingBuf = null;
                     }
                 }
