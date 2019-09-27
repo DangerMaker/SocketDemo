@@ -16,6 +16,7 @@ add_library( # Sets the name of the library.
 
              # Provides a relative path to your source file(s).
              GenerateKey.cpp
+             ndk-helper.cpp
              native-jni.cpp
              )
 

@@ -21,7 +21,7 @@ public class STradePacketKeyExchangeResp {
     public byte[] btReserved = new byte[3];
     public int[] dwReserved = new int[9];
     public byte szGX;
-    public byte[] gx;
+    public byte[] gy;
     public byte empty = 0;
 
     public STradePacketKeyExchangeResp(byte[] data) {
@@ -35,8 +35,8 @@ public class STradePacketKeyExchangeResp {
         }
 
 //        szGX = buffer.get();
-        gx = new byte[data.length - getLength() - 1];
-        buffer.get(gx);
+        gy = new byte[data.length - getLength() - 1];
+        buffer.get(gy);
         empty = buffer.get();
     }
 
@@ -52,7 +52,7 @@ public class STradePacketKeyExchangeResp {
                 ", btReserved=" + Arrays.toString(btReserved) +
                 ", dwReserved=" + Arrays.toString(dwReserved) +
                 ", szGX=" + szGX +
-                ", gx=" + BytesUtils.toHexStringForLog(gx) +
+                ", gx=" + BytesUtils.toHexStringForLog(gy) +
                 ", empty=" + empty +
                 '}';
     }

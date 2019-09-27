@@ -15,8 +15,10 @@ import android.widget.ImageView;
 
 import com.socket.demo.net.CGenerateKey;
 import com.socket.demo.net.Constant;
+import com.socket.demo.net.NetUtil;
 import com.socket.demo.net.OpensslHelper;
 import com.socket.demo.net.STradeBaseHead;
+import com.socket.demo.net.STradeGateLogin;
 import com.socket.demo.net.STradePacketKeyExchange;
 import com.socket.demo.net.STradePacketKeyExchangeResp;
 import com.socket.demo.net.VerificationCode;
@@ -48,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button button;
     Button send;
     Button change;
+    Button login;
     ImageView imageView;
     Context context;
 
@@ -68,6 +71,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         send = findViewById(R.id.send);
         send.setOnClickListener(this);
+        
+        login = findViewById(R.id.login);
+        login.setOnClickListener(this);
 
         imageView = findViewById(R.id.imageView);
     }
@@ -84,9 +90,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.start1:
                 exchange();
                 break;
+            case R.id.login:
+                login();
+                break;
             default:
                 break;
         }
+    }
+
+    private void login() {
     }
 
     private void start() {
@@ -183,11 +195,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void onSocketReadResponse(ConnectionInfo info, String action, OriginalData data) {
-                STradePacketKeyExchangeResp exchange = new STradePacketKeyExchangeResp(data.getBodyBytes());
-                Log.e("STradePacketKeyExchange",exchange.toString());
+
+                ByteBuffer buffer = ByteBuffer.wrap(data.getHeadBytes());
+                buffer.order(ByteOrder.LITTLE_ENDIAN);
+                STradeBaseHead head = new STradeBaseHead(buffer);
+                if(head.dwReqId == 1) {
+                    STradePacketKeyExchangeResp exchange = new STradePacketKeyExchangeResp(data.getBodyBytes());
+                    Log.e("STradePacketKeyExchange", exchange.toString());
+                    byte[] aesKey = OpensslHelper.genMD5(exchange.gy);
+                    Log.e("genMD5", BytesUtils.toHexStringForLog(aesKey));
+
+                    STradeGateLogin login = new STradeGateLogin();
+                    login.setIP(NetUtil.intToIp(exchange.dwIP));
+                    manager.send(login);
+                }
 
             }
         });
         //调用通道进行连接
-        manager.connect();    }
+        manager.connect();
+    }
 }

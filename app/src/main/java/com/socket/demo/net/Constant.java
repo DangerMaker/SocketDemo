@@ -1,6 +1,7 @@
 package com.socket.demo.net;
 
 public class Constant {
+    public static final String UTF8 = "UTF-8";
     public static final int BIZ_HEAD_SIZE = 32;
     public static final int VERITY_HEAD_SIZE = 6;
 
