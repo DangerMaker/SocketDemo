@@ -21,6 +21,8 @@ import com.socket.demo.net.STradeBaseHead;
 import com.socket.demo.net.STradeGateLogin;
 import com.socket.demo.net.STradePacketKeyExchange;
 import com.socket.demo.net.STradePacketKeyExchangeResp;
+import com.socket.demo.net.STradeVerificationCode;
+import com.socket.demo.net.STradeVerificationCodeA;
 import com.socket.demo.net.VerificationCode;
 import com.socket.demo.net.VerificationCodeResp;
 import com.xuhao.didi.core.pojo.OriginalData;
@@ -189,7 +191,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         manager.registerReceiver(new SocketActionAdapter(){
             @Override
             public void onSocketConnectionSuccess(ConnectionInfo info, String action) {
-//                Toast.makeText(context, "连接成功", LENGTH_SHORT).show();
                 manager.send(new STradePacketKeyExchange());
             }
 
@@ -204,10 +205,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Log.e("STradePacketKeyExchange", exchange.toString());
                     byte[] aesKey = OpensslHelper.genMD5(exchange.gy);
                     Log.e("genMD5", BytesUtils.toHexStringForLog(aesKey));
-
-                    STradeGateLogin login = new STradeGateLogin();
-                    login.setIP(NetUtil.intToIp(exchange.dwIP));
-                    manager.send(login);
+                    manager.send(new STradeVerificationCode());
+                }else if(head.dwReqId == 2){
+                    STradeVerificationCodeA resp = new STradeVerificationCodeA(data.getHeadBytes(),data.getBodyBytes());
+                    byte[] picReal = resp.getPic();
+                    Bitmap decodedByte = BitmapFactory.decodeByteArray(picReal, 0, picReal.length);
+                    imageView.setImageBitmap(decodedByte);
                 }
 
             }

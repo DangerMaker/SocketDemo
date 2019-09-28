@@ -6,20 +6,27 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
 /**
- * DWORD    dwIP;
- * BYTE    btAES128;            //    1==说明使用rc4加密
- * BYTE    btReserved[3];
- * DWORD    dwReserved[9];
- * char    szGX[0];
+ * struct STradePacketKeyExchange
+ * {
+ * 	DWORD	dwIP;					//	服务器发送给客户端:	表示服务端看到的客户端IP
+ * 	BYTE	btAES128;				//	客户端发送给服务器:	1==说明使用AES-128 CBC
+ * 	BYTE	btClientType;			//	客户端发送给服务器:	0==客户端   1==手机
+ * 	BYTE	btSupportVerification;	//	服务器发送给客户端:	表示前置机直接支持验证码服务
+ * 	BYTE	btReserved[1];
+ * 	DWORD	dwReserved[9];
+ * 	char	szGX[0];			// 有零结尾的字符串
+ * };
  */
 public class STradePacketKeyExchange implements ISendable {
     public int dwIP = 0;
     public byte btAES128 = 0;
-    public byte[] btReserved = new byte[3];
+    public byte btClientType = 1;
+    public byte btSupportVerification = 0;
+    public byte btReserved = 0;
     public int[] dwReserved = new int[9];
     public byte szGX = 0; //??
-
     public byte empty = 0;
+
     public byte[] gx;
 
     @Override
@@ -52,6 +59,6 @@ public class STradePacketKeyExchange implements ISendable {
     }
 
     public int getLength(){
-        return  4 + 1 + 3 + 4 * 9 + 1 + 1;
+        return  4 + 1 + 1 + 1 + 1 + 4 * 9 + 1 + 1;
     }
 }

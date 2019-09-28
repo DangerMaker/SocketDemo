@@ -8,4 +8,6 @@ public class OpensslHelper {
     public static native byte[] genPublicKey();
 
     public static native byte[] genMD5(byte[] gy);
+
+    public static native byte[] unPress(int bodySize,int rawSize,byte[] body);
 }

@@ -18,9 +18,11 @@ import java.util.Arrays;
 public class STradePacketKeyExchangeResp {
     public int dwIP = 0;
     public byte btAES128 = 0;
-    public byte[] btReserved = new byte[3];
+    public byte btClientType = 1;
+    public byte btSupportVerification = 0;
+    public byte btReserved = 0;
     public int[] dwReserved = new int[9];
-    public byte szGX;
+    //    public byte szGX;
     public byte[] gy;
     public byte empty = 0;
 
@@ -29,7 +31,9 @@ public class STradePacketKeyExchangeResp {
         buffer.order(ByteOrder.LITTLE_ENDIAN);
         dwIP = buffer.getInt();
         btAES128 = buffer.get();
-        buffer.get(btReserved);
+        btClientType = buffer.get();
+        btSupportVerification = buffer.get();
+        btReserved = buffer.get();
         for (int i = 0; i < 9; i++) {
             dwReserved[i] = buffer.getInt();
         }
@@ -41,7 +45,7 @@ public class STradePacketKeyExchangeResp {
     }
 
     public int getLength() {
-        return 4 + 1 + 3 + 4 * 9;
+        return 4 + 1 + 1 + 1 + 1 + 4 * 9;
     }
 
     @Override
@@ -49,10 +53,11 @@ public class STradePacketKeyExchangeResp {
         return "STradePacketKeyExchangeResp{" +
                 "dwIP=" + dwIP +
                 ", btAES128=" + btAES128 +
-                ", btReserved=" + Arrays.toString(btReserved) +
+                ", btClientType=" + btClientType +
+                ", btSupportVerification=" + btSupportVerification +
+                ", btReserved=" + btReserved +
                 ", dwReserved=" + Arrays.toString(dwReserved) +
-                ", szGX=" + szGX +
-                ", gx=" + BytesUtils.toHexStringForLog(gy) +
+                ", gy=" + Arrays.toString(gy) +
                 ", empty=" + empty +
                 '}';
     }

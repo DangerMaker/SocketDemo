@@ -29,15 +29,25 @@ jbyteArray Java_com_socket_demo_net_OpensslHelper_genPublicKey(JNIEnv *env,
 jbyteArray Java_com_socket_demo_net_OpensslHelper_genMD5(JNIEnv *env,
                                                          jclass clazz, jbyteArray arg2) {
     char *key = NULL;
-    BYTE* result = new BYTE[16];
-    char *gy = convertJByteaArrayToChars(env, arg2);
+    BYTE *result = new BYTE[16];
+    char *gy = convertJByteArrayToChars(env, arg2);
     cGenerateKey->CBN_CalcKey(gy, mx, key);
-    MD5((BYTE*)key, strlen(key), result);
+    MD5((BYTE *) key, strlen(key), result);
     int resultLength = 16;
     jbyteArray array = env->NewByteArray(resultLength);
     env->SetByteArrayRegion(array, 0, resultLength, reinterpret_cast<const jbyte *>(result));
     return array;
 }
 
-
+jbyteArray Java_com_socket_demo_net_OpensslHelper_unPress(JNIEnv *env, jclass type,
+                                                          jint dwBodySize,
+                                                          jint dwRawSize,
+                                                          jbyteArray
+                                                          body) {
+    int body_length;
+    int out_length;
+    unsigned char* body_buffer = as_unsigned_char_array(env, body, body_length);
+    unsigned char* press_buffer = unPress(dwBodySize,dwRawSize,body_buffer,out_length);
+    return unsignedChar2JbyteArray(env,press_buffer,out_length);
+}
 }
