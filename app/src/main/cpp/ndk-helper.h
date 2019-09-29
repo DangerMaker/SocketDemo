@@ -15,10 +15,10 @@
 #define UINT            uint32_t
 #define BOOLEAN            int32_t
 
-char* convertJByteArrayToChars(JNIEnv *env, jbyteArray bytearray);
+unsigned char* jByteArray2UnsignedChar(JNIEnv *env, jbyteArray array,int &outlength);
 
-unsigned char* as_unsigned_char_array(JNIEnv *env, jbyteArray array,int &outlength);
-
-jbyteArray unsignedChar2JbyteArray(JNIEnv *env, unsigned char* buf, int len);
+jbyteArray unsignedChar2JByteArray(JNIEnv *env, unsigned char* buf, int len);
 
 BYTE* unPress(DWORD dwBodySize,DWORD dwRawSize,BYTE* body,int& outlength);
+
+bool decrypt(BYTE *key,DWORD dwEncRawSize, BYTE *body);

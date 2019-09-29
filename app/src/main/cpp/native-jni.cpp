@@ -21,33 +21,47 @@ jbyteArray Java_com_socket_demo_net_OpensslHelper_genPublicKey(JNIEnv *env,
     cGenerateKey->CBN_CreateLocalKey(x, gx);
     mx = x;
     int gxLength = strlen(gx);
-    jbyteArray array = env->NewByteArray(gxLength);
-    env->SetByteArrayRegion(array, 0, gxLength, reinterpret_cast<const jbyte *>(gx));
-    return array;
+    return unsignedChar2JByteArray(env, reinterpret_cast<unsigned char *>(gx), gxLength);;
+
 }
 
 jbyteArray Java_com_socket_demo_net_OpensslHelper_genMD5(JNIEnv *env,
                                                          jclass clazz, jbyteArray arg2) {
     char *key = NULL;
     BYTE *result = new BYTE[16];
-    char *gy = convertJByteArrayToChars(env, arg2);
-    cGenerateKey->CBN_CalcKey(gy, mx, key);
+    int gy_length;
+    unsigned char *gy = jByteArray2UnsignedChar(env, arg2, gy_length);
+    cGenerateKey->CBN_CalcKey(reinterpret_cast<char *>(gy), mx, key);
     MD5((BYTE *) key, strlen(key), result);
-    int resultLength = 16;
-    jbyteArray array = env->NewByteArray(resultLength);
-    env->SetByteArrayRegion(array, 0, resultLength, reinterpret_cast<const jbyte *>(result));
-    return array;
+    return unsignedChar2JByteArray(env, result, 16);
 }
 
 jbyteArray Java_com_socket_demo_net_OpensslHelper_unPress(JNIEnv *env, jclass type,
                                                           jint dwBodySize,
                                                           jint dwRawSize,
-                                                          jbyteArray
-                                                          body) {
+                                                          jbyteArray body) {
     int body_length;
     int out_length;
-    unsigned char* body_buffer = as_unsigned_char_array(env, body, body_length);
-    unsigned char* press_buffer = unPress(dwBodySize,dwRawSize,body_buffer,out_length);
-    return unsignedChar2JbyteArray(env,press_buffer,out_length);
+    unsigned char *body_buffer = jByteArray2UnsignedChar(env, body, body_length);
+    unsigned char *press_buffer = unPress(dwBodySize, dwRawSize, body_buffer, out_length);
+    return unsignedChar2JByteArray(env, press_buffer, out_length);
 }
+
+
+jbyteArray Java_com_socket_demo_net_OpensslHelper_decrypt(JNIEnv *env, jclass type,
+                                                          jbyteArray key,
+                                                          jbyteArray body,
+                                                          jint dwEncRawSize) {
+
+    int key_length;
+    BYTE* key_buffer = jByteArray2UnsignedChar(env,key,key_length);
+    int body_length;
+    BYTE* body_buffer = jByteArray2UnsignedChar(env,body,body_length);
+    decrypt(key_buffer,dwEncRawSize,body_buffer);
+    return unsignedChar2JByteArray(env,body_buffer,body_length);
+}
+
+
+
+
 }

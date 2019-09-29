@@ -19,6 +19,7 @@ add_library( # Sets the name of the library.
              ndk-helper.cpp
              ZlibDll.cpp
              native-jni.cpp
+             aes_x86core.c
              )
 
 

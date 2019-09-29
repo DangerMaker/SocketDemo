@@ -100,8 +100,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private void login() {
-    }
 
     private void start() {
         ConnectionInfo info = new ConnectionInfo(IP,PORT);
@@ -155,9 +153,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         manager.connect();
     }
 
+    IConnectionManager manager;
     private void exchange() {
         ConnectionInfo info = new ConnectionInfo(IP,BIZ_PORT);
-        final IConnectionManager manager = OkSocket.open(info);
+        manager = OkSocket.open(info);
         OkSocketOptions options= manager.getOption();
         //基于当前参配对象构建一个参配建造者类
         OkSocketOptions.Builder builder = new OkSocketOptions.Builder(options);
@@ -218,4 +217,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //调用通道进行连接
         manager.connect();
     }
+
+    private void login() {
+            manager.send(new STradeGateLogin());
+    }
+
 }
