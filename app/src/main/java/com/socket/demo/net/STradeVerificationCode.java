@@ -1,9 +1,6 @@
 package com.socket.demo.net;
 
-import com.xuhao.didi.core.iocore.interfaces.ISendable;
-
 import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
 
 /**
  * //客户端发送登录请求前，申请验证码文件
@@ -14,31 +11,25 @@ import java.nio.ByteOrder;
  * 	DWORD		dwHeight;	//像素高(是否起作用,根据服务器设置)
  * };
  */
-public class STradeVerificationCode implements ISendable {
+public class STradeVerificationCode extends AbsSendable {
 
-    int dwWidth = 30;
-    int dwHeight = 15;
+    private int dwWidth = 30;
+    private int dwHeight = 15;
 
     @Override
-    public byte[] parse() {
-        //fill header
-        STradeBaseHead header = new STradeBaseHead();
-        header.wPid = 112;
-        header.dwBodySize = header.dwRawSize = getLength();
-        header.dwReqId = 2;
-
-        //fill body
-
-        //parse
-        ByteBuffer bb = ByteBuffer.allocate(header.getLength() + getLength());
-        bb.order(ByteOrder.LITTLE_ENDIAN);
-        bb.put(header.parse());
-        bb.putInt(dwWidth);
-        bb.putInt(dwHeight);
-        return bb.array();
+    protected void getHead(STradeBaseHead header) {
+        header.wPid = PID_TRADE_VERIFICATION_CODE;
+        header.dwReqId = dwReqId;
     }
 
-    public int getLength(){
-        return 4 + 4;
+    @Override
+    protected void getBody(ByteBuffer bodyBuffer) {
+        bodyBuffer.putInt(dwWidth);
+        bodyBuffer.putInt(dwHeight);
+    }
+
+    @Override
+    protected int getBodyLength() {
+        return sizeof(dwWidth) + sizeof(dwHeight);
     }
 }

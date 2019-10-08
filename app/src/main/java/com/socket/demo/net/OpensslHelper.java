@@ -11,5 +11,5 @@ public class OpensslHelper {
 
     public static native byte[] unPress(int bodySize,int rawSize,byte[] body);
 
-    public static native byte[] decrypt(byte[] key,int dwEncRawSize);
+    public static native byte[] decrypt(byte[] key,byte[] body,int dwEncRawSize);
 }

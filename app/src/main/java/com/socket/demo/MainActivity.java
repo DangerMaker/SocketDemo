@@ -1,8 +1,7 @@
 package com.socket.demo;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -11,20 +10,27 @@ import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.socket.demo.net.CGenerateKey;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.socket.demo.net.AbsSendable;
 import com.socket.demo.net.Constant;
-import com.socket.demo.net.NetUtil;
 import com.socket.demo.net.OpensslHelper;
 import com.socket.demo.net.STradeBaseHead;
+import com.socket.demo.net.STradeCommOK;
+import com.socket.demo.net.STradeGateBizFun;
+import com.socket.demo.net.STradeGateError;
 import com.socket.demo.net.STradeGateLogin;
+import com.socket.demo.net.STradeGateLoginA;
 import com.socket.demo.net.STradePacketKeyExchange;
 import com.socket.demo.net.STradePacketKeyExchangeResp;
 import com.socket.demo.net.STradeVerificationCode;
 import com.socket.demo.net.STradeVerificationCodeA;
-import com.socket.demo.net.VerificationCode;
-import com.socket.demo.net.VerificationCodeResp;
+import com.socket.demo.net.old.OldGateLogin;
+import com.socket.demo.net.old.OldKeyExchange;
+import com.socket.demo.net.old.OldKeyExchangeResp;
 import com.xuhao.didi.core.pojo.OriginalData;
 import com.xuhao.didi.core.protocol.IReaderProtocol;
 import com.xuhao.didi.core.utils.BytesUtils;
@@ -37,23 +43,23 @@ import com.xuhao.didi.socket.client.sdk.client.action.SocketActionAdapter;
 import com.xuhao.didi.socket.client.sdk.client.connection.IConnectionManager;
 import com.xuhao.didi.socket.client.sdk.client.connection.NoneReconnect;
 
+import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import java.util.Arrays;
 
 import static com.socket.demo.net.Constant.BIZ_PORT;
+import static com.socket.demo.net.Constant.IP;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    public static final String IP = "118.26.24.26";
-    public static final int PORT = 35502;
-    public static final int PORT1 = 15001;
     Button button;
     Button send;
     Button change;
     Button login;
+    Button test_activity;
     ImageView imageView;
+    EditText editVerify;
     Context context;
 
     @Override
@@ -73,11 +79,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         send = findViewById(R.id.send);
         send.setOnClickListener(this);
-        
+
         login = findViewById(R.id.login);
         login.setOnClickListener(this);
 
         imageView = findViewById(R.id.imageView);
+        editVerify = findViewById(R.id.edit_verify);
+        test_activity = findViewById(R.id.test_activity);
+        test_activity.setOnClickListener(this);
     }
 
     @Override
@@ -87,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 start();
                 break;
             case R.id.send:
-                SLog.i(BytesUtils.toHexStringForLog(OpensslHelper.genPublicKey()));
+                old();
                 break;
             case R.id.start1:
                 exchange();
@@ -95,71 +104,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.login:
                 login();
                 break;
+            case R.id.test_activity:
+                startActivity(new Intent(this,TestActivity.class));
+                break;
             default:
                 break;
         }
     }
 
-
     private void start() {
-        ConnectionInfo info = new ConnectionInfo(IP,PORT);
-        final IConnectionManager manager = OkSocket.open(info);
-        OkSocketOptions options= manager.getOption();
-        //基于当前参配对象构建一个参配建造者类
-        OkSocketOptions.Builder builder = new OkSocketOptions.Builder(options);
-        builder.setReaderProtocol(new IReaderProtocol() {
-            @Override
-            public int getHeaderLength() {
-                return 6;
-            }
-
-            @Override
-            public int getBodyLength(byte[] header, ByteOrder byteOrder) {
-                ByteBuffer buffer = ByteBuffer.wrap(header);
-                buffer.order(ByteOrder.LITTLE_ENDIAN);
-                short pid = buffer.getShort();
-                int length = buffer.getInt();
-                return length;
-            }
-        });
-
-        builder.setReconnectionManager(new NoneReconnect());
-        final Handler handler = new Handler(Looper.getMainLooper());
-        builder.setCallbackThreadModeToken(new OkSocketOptions.ThreadModeToken() {
-            @Override
-            public void handleCallbackEvent(ActionDispatcher.ActionRunnable runnable) {
-                handler.post(runnable);
-            }
-        });
-
-        manager.option(builder.build());
-        //注册Socket行为监听器,SocketActionAdapter是回调的Simple类,其他回调方法请参阅类文档
-        manager.registerReceiver(new SocketActionAdapter(){
-            @Override
-            public void onSocketConnectionSuccess(ConnectionInfo info, String action) {
-//                Toast.makeText(context, "连接成功", LENGTH_SHORT).show();
-                manager.send(new VerificationCode());
-            }
-
-            @Override
-            public void onSocketReadResponse(ConnectionInfo info, String action, OriginalData data) {
-                VerificationCodeResp resp = new VerificationCodeResp(data.getBodyBytes());
-                byte[] picReal = resp.getPic();
-                Bitmap decodedByte = BitmapFactory.decodeByteArray(picReal, 0, picReal.length);
-                imageView.setImageBitmap(decodedByte);
-            }
-        });
-        //调用通道进行连接
-        manager.connect();
+        String body = "FUN=410501&TBL_IN=fundid,market,secuid,qryflag,count,poststr;,,,1,10,;";
+        manager.send(new STradeGateBizFun(body));
     }
 
     IConnectionManager manager;
+    int ip;
+    byte[] szId;
+    byte[] aesKey = null;
+
     private void exchange() {
-        ConnectionInfo info = new ConnectionInfo(IP,BIZ_PORT);
+        ConnectionInfo info = new ConnectionInfo(IP, BIZ_PORT);
         manager = OkSocket.open(info);
-        OkSocketOptions options= manager.getOption();
+        OkSocketOptions options = manager.getOption();
         //基于当前参配对象构建一个参配建造者类
         OkSocketOptions.Builder builder = new OkSocketOptions.Builder(options);
+        builder.setReadByteOrder(ByteOrder.LITTLE_ENDIAN);
+        builder.setWriteByteOrder(ByteOrder.LITTLE_ENDIAN);
+        builder.setPulseFrequency(10 * 1000);
         builder.setReaderProtocol(new IReaderProtocol() {
             @Override
             public int getHeaderLength() {
@@ -169,9 +140,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public int getBodyLength(byte[] header, ByteOrder byteOrder) {
                 ByteBuffer buffer = ByteBuffer.wrap(header);
-                buffer.order(ByteOrder.LITTLE_ENDIAN);
+                buffer.order(byteOrder);
                 STradeBaseHead head = new STradeBaseHead(buffer);
-                Log.e("STradeBaseHead",head.toString());
+                Log.e("STradeBaseHead Response", head.toString());
                 return head.dwBodySize;
             }
         });
@@ -187,29 +158,52 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         manager.option(builder.build());
         //注册Socket行为监听器,SocketActionAdapter是回调的Simple类,其他回调方法请参阅类文档
-        manager.registerReceiver(new SocketActionAdapter(){
+        manager.registerReceiver(new SocketActionAdapter() {
             @Override
             public void onSocketConnectionSuccess(ConnectionInfo info, String action) {
                 manager.send(new STradePacketKeyExchange());
+                manager.getPulseManager().setPulseSendable(new STradeCommOK());
             }
 
             @Override
             public void onSocketReadResponse(ConnectionInfo info, String action, OriginalData data) {
-
                 ByteBuffer buffer = ByteBuffer.wrap(data.getHeadBytes());
                 buffer.order(ByteOrder.LITTLE_ENDIAN);
                 STradeBaseHead head = new STradeBaseHead(buffer);
-                if(head.dwReqId == 1) {
+
+                if(head.wPid == AbsSendable.PID_TRADE_COMM_OK){
+                    manager.getPulseManager().feed();
+                }
+
+                if(head.wPid == AbsSendable.PID_TRADE_GATE_ERROR){
+                    STradeGateError gateError = new STradeGateError(data.getHeadBytes(),data.getBodyBytes(),aesKey);
+                }
+
+                if (head.dwReqId == 1) {
                     STradePacketKeyExchangeResp exchange = new STradePacketKeyExchangeResp(data.getBodyBytes());
                     Log.e("STradePacketKeyExchange", exchange.toString());
-                    byte[] aesKey = OpensslHelper.genMD5(exchange.gy);
+                    aesKey = OpensslHelper.genMD5(exchange.gy);
                     Log.e("genMD5", BytesUtils.toHexStringForLog(aesKey));
+                    ip = exchange.dwIP;
                     manager.send(new STradeVerificationCode());
-                }else if(head.dwReqId == 2){
-                    STradeVerificationCodeA resp = new STradeVerificationCodeA(data.getHeadBytes(),data.getBodyBytes());
+                } else if (head.dwReqId == 2) {
+                    STradeVerificationCodeA resp = new STradeVerificationCodeA(data.getHeadBytes(), data.getBodyBytes());
                     byte[] picReal = resp.getPic();
                     Bitmap decodedByte = BitmapFactory.decodeByteArray(picReal, 0, picReal.length);
                     imageView.setImageBitmap(decodedByte);
+                    szId = resp.szId;
+                    Log.e("STradeVerificationCodeA", resp.toString());
+//                    manager.getPulseManager().pulse();
+                }
+                else if (head.dwReqId == 10) {
+                    STradeGateLoginA gateLoginA = new STradeGateLoginA(data.getHeadBytes(),data.getBodyBytes(),aesKey);
+//                    ByteBuffer loginBuffer = ByteBuffer.wrap(data.getHeadBytes());
+//                    buffer.order(ByteOrder.LITTLE_ENDIAN);
+//                    STradeBaseHead head1 = new STradeBaseHead(loginBuffer);
+//                    byte[] bytes = OpensslHelper.decrypt(aesKey,data.getBodyBytes(),head1.dwEncRawSize);
+//                    Log.e("LoginResponse", BytesUtils.toHexStringForLog(data.getBodyBytes()));
+                }else if(head.dwReqId == 5){
+
                 }
 
             }
@@ -219,7 +213,88 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void login() {
-            manager.send(new STradeGateLogin());
+        String verify = editVerify.getText().toString();
+
+        STradeGateLogin tradeGateLogin = new STradeGateLogin();
+        tradeGateLogin.setVerifyCode(verify);
+//        tradeGateLogin.setIP(NetUtil.intToIp(ip));
+//        tradeGateLogin.setSzId(szId);
+        manager.send(tradeGateLogin);
+
+    }
+
+    private void old() {
+        ConnectionInfo info = new ConnectionInfo(IP, BIZ_PORT);
+        manager = OkSocket.open(info);
+        OkSocketOptions options = manager.getOption();
+        //基于当前参配对象构建一个参配建造者类
+        OkSocketOptions.Builder builder = new OkSocketOptions.Builder(options);
+        builder.setReadByteOrder(ByteOrder.LITTLE_ENDIAN);
+        builder.setWriteByteOrder(ByteOrder.LITTLE_ENDIAN);
+        builder.setReaderProtocol(new IReaderProtocol() {
+            @Override
+            public int getHeaderLength() {
+                return Constant.BIZ_HEAD_SIZE;
+            }
+
+            @Override
+            public int getBodyLength(byte[] header, ByteOrder byteOrder) {
+                ByteBuffer buffer = ByteBuffer.wrap(header);
+                buffer.order(ByteOrder.LITTLE_ENDIAN);
+                STradeBaseHead head = new STradeBaseHead(buffer);
+                Log.e("STradeBaseHead", head.toString());
+                return head.dwBodySize;
+            }
+        });
+
+        builder.setReconnectionManager(new NoneReconnect());
+        final Handler handler = new Handler(Looper.getMainLooper());
+        builder.setCallbackThreadModeToken(new OkSocketOptions.ThreadModeToken() {
+            @Override
+            public void handleCallbackEvent(ActionDispatcher.ActionRunnable runnable) {
+                handler.post(runnable);
+            }
+        });
+
+        manager.option(builder.build());
+        //注册Socket行为监听器,SocketActionAdapter是回调的Simple类,其他回调方法请参阅类文档
+        manager.registerReceiver(new SocketActionAdapter() {
+            @Override
+            public void onSocketConnectionSuccess(ConnectionInfo info, String action) {
+                manager.send(new OldKeyExchange());
+            }
+
+            @Override
+            public void onSocketReadResponse(ConnectionInfo info, String action, OriginalData data) {
+
+                ByteBuffer buffer = ByteBuffer.wrap(data.getHeadBytes());
+                buffer.order(ByteOrder.LITTLE_ENDIAN);
+                STradeBaseHead head = new STradeBaseHead(buffer);
+
+
+                if(head.wPid == AbsSendable.PID_TRADE_GATE_ERROR){
+                    STradeGateError gateError = new STradeGateError(data.getHeadBytes(),data.getBodyBytes(),aesKey);
+                }
+
+                if (head.dwReqId == 1) {
+                    OldKeyExchangeResp exchange = new OldKeyExchangeResp(data.getBodyBytes());
+                    Log.e("STradePacketKeyExchange", exchange.toString());
+                    aesKey = OpensslHelper.genMD5(exchange.gy);
+                    Log.e("genMD5", BytesUtils.toHexStringForLog(aesKey));
+
+                    manager.send(new OldGateLogin());
+                } else if (head.dwReqId == 101) {
+                    STradeGateLoginA gateLoginA = new STradeGateLoginA(data.getHeadBytes(),data.getBodyBytes(),aesKey);
+//                    byte[] bytes = OpensslHelper.decrypt(aesKey, data.getBodyBytes(), head.dwEncRawSize);
+//                    Log.e("LoginDecrypt", BytesUtils.toHexStringForLog(bytes));
+//                    byte[] unPress = OpensslHelper.unPress(bytes.length,head.dwRawSize,bytes);
+//                    Log.e("LoginUnPress", unPress.length + "");
+                }
+
+            }
+        });
+        //调用通道进行连接
+        manager.connect();
     }
 
 }

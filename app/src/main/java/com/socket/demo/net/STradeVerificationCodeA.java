@@ -2,6 +2,7 @@ package com.socket.demo.net;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.util.Arrays;
 
 /**
  * struct STradeVerificationCodeA
@@ -15,12 +16,12 @@ import java.nio.ByteOrder;
  * };
  */
 public class STradeVerificationCodeA {
-    private byte[] szId = new byte[21]; //21
-    private int reserve;
-    private int dwLife;
-    private byte type;
-    private int dwPicLen;
-    private byte[] pic;
+    public byte[] szId = new byte[21]; //21
+    public int reserve;
+    public int dwLife;
+    public byte type;
+    public int dwPicLen;
+    public byte[] pic;
 
     public STradeVerificationCodeA(byte[] head,byte[] originBody) {
         ByteBuffer headBuffer = ByteBuffer.wrap(head);
@@ -45,5 +46,17 @@ public class STradeVerificationCodeA {
 
     public byte[] getPic() {
         return pic;
+    }
+
+    @Override
+    public String toString() {
+        return "STradeVerificationCodeA{" +
+                "szId=" + Arrays.toString(szId) +
+                ", reserve=" + reserve +
+                ", dwLife=" + dwLife +
+                ", type=" + type +
+                ", dwPicLen=" + dwPicLen +
+//                ", pic=" + Arrays.toString(pic) +
+                '}';
     }
 }

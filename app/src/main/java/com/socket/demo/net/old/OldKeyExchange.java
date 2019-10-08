@@ -1,5 +1,7 @@
-package com.socket.demo.net;
+package com.socket.demo.net.old;
 
+import com.socket.demo.net.OpensslHelper;
+import com.socket.demo.net.STradeBaseHead;
 import com.xuhao.didi.core.iocore.interfaces.ISendable;
 
 import java.nio.ByteBuffer;
@@ -16,13 +18,35 @@ import java.nio.ByteOrder;
  * 	DWORD	dwReserved[9];
  * 	char	szGX[0];			// 有零结尾的字符串
  * };
+ * #define PID_TRADE_KEY_EXCHANGE      (PID_TRADE_COMM_BASE+1)
+ * struct STradePacketKeyExchange
+ * {
+ *     DWORD    dwIP;
+ *     //    DWORD    dwReserved[10];
+ *     BYTE    btAES128;            //    1==说明使用rc4加密
+ *     BYTE    btReserved[3];
+ *     DWORD    dwReserved[9];
+ *     char    szGX[0];            // 有零结尾的字符串
+ *
+ *     std::string toJSON(const char * inGX)
+ *     {
+ *         cJSON *json = cJSON_CreateObject();
+ *
+ *         cJSON_AddNumberToObject(json,"dwIP",dwIP);
+ *         cJSON_AddNumberToObject(json,"btAES128",btAES128);
+ *         cJSON_AddStringToObject(json,"szGX",inGX);
+ *         std::string jsonstr = cJSON_Print(json);
+ *         cJSON_Delete(json);
+ *         return jsonstr;
+ *     }
+ * };
  */
-public class STradePacketKeyExchange implements ISendable {
+
+
+public class OldKeyExchange implements ISendable {
     public int dwIP = 0;
     public byte btAES128 = 0;
-    public byte btClientType = 1;
-    public byte btSupportVerification = 0;
-    public byte btReserved = 0;
+    public byte[] btReserved = new byte[3];
     public int[] dwReserved = new int[9];
 //    public byte szGX = 0; //??
     public byte empty = 0;
@@ -48,10 +72,7 @@ public class STradePacketKeyExchange implements ISendable {
         bb.put(header.parse());
         bb.putInt(dwIP);
         bb.put(btAES128);
-        bb.put(btClientType);
-        bb.put(btSupportVerification);
         bb.put(btReserved);
-
         for (int i = 0; i < 9; i++) {
             bb.putInt(dwReserved[i]);
         }
@@ -62,6 +83,6 @@ public class STradePacketKeyExchange implements ISendable {
     }
 
     public int getLength(){
-        return  4 + 1 + 1 + 1 + 1 + 4 * 9 + 1 ;
+        return  4 + 1 + 3 + 4 * 9 + 1;
     }
 }

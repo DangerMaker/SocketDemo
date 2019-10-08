@@ -1,5 +1,8 @@
 package com.socket.demo;
 
+import com.socket.demo.net.NetUtil;
+import com.socket.demo.net.STradeGateUserInfo;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -12,6 +15,14 @@ import static org.junit.Assert.*;
 public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() {
-        assertEquals(4, 2 + 2);
+        int[] reserve = new int[4];
+
+        System.out.println(sizeof(new STradeGateUserInfo()));
+        System.out.println(sizeof(reserve));
+    }
+
+
+    private int sizeof(Object o){
+       return NetUtil.sizeOf(o);
     }
 }

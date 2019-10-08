@@ -16,19 +16,28 @@ import java.nio.ByteOrder;
  * };
  */
 public class STradeGateUserInfo {
-    long n64_custid = 0;
-    byte[] sz_custorgid = new byte[5];
-    byte[] sz_trdpwd = new byte[33];
-    byte[] sz_netaddr = new byte[271];
-    byte[] sz_orgid = new byte[5];
-    byte[] sz_custcert = new byte[129];
-    byte[] sz_netaddr2 = new byte[256];
+    public long n64_custid = 0;
+    public byte[] sz_custorgid = new byte[5];
+    public byte[] sz_trdpwd = new byte[33];
+    public byte[] sz_netaddr = new byte[271];
+    public byte[] sz_orgid = new byte[5];
+    public byte[] sz_custcert = new byte[129];
+    public byte[] sz_netaddr2 = new byte[256];
 
-    public int getLength() {
-        return 64 + 5 + 33 + 271 + 5 + 129 + 256;
+    private static STradeGateUserInfo userInfo;
+
+    public static STradeGateUserInfo getInstance() {
+        if(userInfo == null){
+            userInfo = new STradeGateUserInfo();
+        }
+        return userInfo;
     }
 
-    public byte[] parse(){
+    public int getLength() {
+        return 8 + 5 + 33 + 271 + 5 + 129 + 256;
+    }
+
+    public byte[] parse() {
         ByteBuffer bb = ByteBuffer.allocate(getLength());
         bb.order(ByteOrder.LITTLE_ENDIAN);
         bb.putLong(n64_custid);

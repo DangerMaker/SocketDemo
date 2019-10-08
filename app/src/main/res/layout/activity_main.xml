@@ -8,18 +8,10 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/start"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Get VerificationCode"
-        />
-
-
-    <Button
         android:id="@+id/start1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Get KeyExchange"
+        android:text="KeyExchange"
         />
 
 
@@ -27,7 +19,14 @@
         android:id="@+id/login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="LOGIN"
+        android:text="Login"
+        />
+
+    <Button
+        android:id="@+id/start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bussiness"
         />
 
     <Button
@@ -37,10 +36,22 @@
         android:text="test"
         />
 
+    <Button
+        android:id="@+id/test_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="test_activity"
+        />
+
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="200dp"
         android:layout_height="100dp"
         />
 
+    <EditText
+        android:id="@+id/edit_verify"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </LinearLayout>

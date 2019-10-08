@@ -3,6 +3,12 @@
 #include <string>
 #include "md5.h"
 #include "ndk-helper.h"
+#include <arpa/inet.h>
+#include <android/log.h>
+
+
+#define LOGI(...) \
+  ((void)__android_log_print(ANDROID_LOG_INFO, "compass_trade::", __VA_ARGS__))
 
 
 //
@@ -20,8 +26,8 @@ jbyteArray Java_com_socket_demo_net_OpensslHelper_genPublicKey(JNIEnv *env,
     cGenerateKey = new CGenerateKey();
     cGenerateKey->CBN_CreateLocalKey(x, gx);
     mx = x;
-    int gxLength = strlen(gx);
-    return unsignedChar2JByteArray(env, reinterpret_cast<unsigned char *>(gx), gxLength);;
+    int gxLength = (DWORD)strlen(gx);
+    return unsignedChar2JByteArray(env, reinterpret_cast<unsigned char *>(gx), gxLength);
 
 }
 
@@ -57,8 +63,16 @@ jbyteArray Java_com_socket_demo_net_OpensslHelper_decrypt(JNIEnv *env, jclass ty
     BYTE* key_buffer = jByteArray2UnsignedChar(env,key,key_length);
     int body_length;
     BYTE* body_buffer = jByteArray2UnsignedChar(env,body,body_length);
+
+    LOGI("%d",dwEncRawSize);
     decrypt(key_buffer,dwEncRawSize,body_buffer);
-    return unsignedChar2JByteArray(env,body_buffer,body_length);
+    return unsignedChar2JByteArray(env,body_buffer,dwEncRawSize);
+}
+
+jbyteArray Java_com_socket_demo_net_OpensslHelper_ipConvert(JNIEnv *env, jclass type,
+                                                            jint ip){
+    char *paddress = inet_ntoa(*(in_addr*)ip);
+    return unsignedChar2JByteArray(env, reinterpret_cast<unsigned char *>(paddress), strlen(paddress));
 }
 
 

@@ -1,12 +1,14 @@
-package com.socket.demo.net;
+package com.socket.demo.net.old;
 
+import com.socket.demo.net.Constant;
+import com.socket.demo.net.STradeBaseHead;
+import com.socket.demo.net.STradeGateUserInfo;
 import com.xuhao.didi.core.iocore.interfaces.ISendable;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
-import static com.socket.demo.net.Constant.BIZ_HEAD_SIZE;
 import static com.socket.demo.net.Constant.UTF8;
 
 /**
@@ -54,9 +56,9 @@ import static com.socket.demo.net.Constant.UTF8;
  * <p>
  * };
  */
-public class STradeGateLogin implements ISendable {
+public class OldGateLogin implements ISendable {
 
-    STradeGateUserInfo userinfo = STradeGateUserInfo.getInstance();
+    STradeGateUserInfo userinfo = new STradeGateUserInfo();
     byte[] sz_inputtype = new byte[2];
     byte[] sz_inputid = new byte[65];
     byte[] sz_market = new byte[2];
@@ -90,22 +92,17 @@ public class STradeGateLogin implements ISendable {
 //        this.szVerificationId = szId;
 //    }
 
-    String verifyCode;
-    public void setVerifyCode(String verifyCode){
-        this.verifyCode = verifyCode;
-    }
-
     @Override
     public byte[] parse() {
         STradeBaseHead header = new STradeBaseHead();
         header.wPid = 2010;
         header.dwBodySize = header.dwRawSize =  getLength();
-        header.dwReqId = 10;
+        header.dwReqId = 101;
 
         //fill body
         String strUserType = "Z";
         String strUserId = "109000512";
-//        String strCheckCode = "3333"; //??
+        String strCheckCode = "3333"; //??
         String strVerifiCodeId = "1012"; //??
         String strPassword = "123123";
         String strNet2 = "ZNZ|000EC6CF8DA4|PLEXTOR";
@@ -113,7 +110,8 @@ public class STradeGateLogin implements ISendable {
         try {
             byteCopy(strUserType.getBytes(UTF8),sz_inputtype);
             byteCopy(strUserId.getBytes(UTF8),sz_inputid);
-            byteCopy(verifyCode.getBytes(UTF8),szVerificationCode);
+            byteCopy(strCheckCode.getBytes(UTF8),szVerificationCode);
+
             byteCopy(strPassword.getBytes(UTF8),userinfo.sz_trdpwd);
 //            byteCopy(ip.getBytes(UTF8),userinfo.sz_netaddr);
             byteCopy(strNet2.getBytes(UTF8),userinfo.sz_netaddr2);
