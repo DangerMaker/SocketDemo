@@ -18,9 +18,7 @@ public class YCParser {
 
     public static Map<String, String> parseObject(String json) throws JSONException {
         Map<String, String> map = new HashMap<>();
-        JSONObject jsonObject = new JSONObject(json);
-        String content = jsonObject.getString("content");
-        Uri uri = Uri.parse(Constant.URI_DEFAULT_HELPER + content);
+        Uri uri = Uri.parse(Constant.URI_DEFAULT_HELPER + json);
         Set<String> pn = uri.getQueryParameterNames();
         for (Iterator it = pn.iterator(); it.hasNext(); ) {
             String key = it.next().toString();
