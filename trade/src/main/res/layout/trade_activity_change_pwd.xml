@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/bar_layout"
+        layout="@layout/toolbar_normal" />
+
+    <LinearLayout
+        android:id="@+id/select_type"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/trade_edit_title_custom"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="选择交易类型" />
+
+        <TextView
+            android:id="@+id/type"
+            style="@style/trade_edit_title_custom"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/title"
+            android:text="@string/trade_pwd_type_trade"
+            />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="1dp"/>
+        
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/nav_down"
+            android:layout_marginRight="20dp"
+            />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/trade_gray" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/title1"
+            style="@style/trade_edit_title_custom"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="当前交易密码" />
+
+        <EditText
+            android:id="@+id/original"
+            style="@style/trade_edit_content_custom"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/title"
+            android:hint="@string/trade_input_pwd_hint" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/trade_gray" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/title2"
+            style="@style/trade_edit_title_custom"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="新交易密码　" />
+
+        <EditText
+            android:id="@+id/new_pwd"
+            style="@style/trade_edit_content_custom"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/title"
+            android:hint="@string/trade_input_pwd_hint" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/trade_gray" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/title3"
+            style="@style/trade_edit_title_custom"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="确认交易密码" />
+
+        <EditText
+            android:id="@+id/repeat"
+            style="@style/trade_edit_content_custom"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/title"
+            android:hint="@string/trade_input_pwd_hint" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/trade_gray" />
+
+    <Button
+        android:id="@+id/submit"
+        style="@style/trade_red_button_custom"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="20dp"
+        android:text="@string/trade_confirm_change" />
+</LinearLayout>

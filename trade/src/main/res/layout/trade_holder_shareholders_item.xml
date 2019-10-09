@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:paddingLeft="8dp"
+    android:paddingTop="10dp"
+    android:paddingRight="8dp"
+    android:paddingBottom="10dp">
+
+    <TextView
+        android:id="@+id/stockholders_code"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1.3"
+        android:maxLines="1"
+        android:layout_marginLeft="5dp"
+        android:text="12345678890(主)"
+        android:textColor="@color/trade_pull_text"
+        android:textSize="14dp" />
+
+
+    <TextView
+        android:id="@+id/stockholders_name"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="right"
+        android:text="xxx"
+        android:textColor="@color/trade_pull_text"
+        android:textSize="14dp" />
+
+
+    <TextView
+        android:id="@+id/market_type"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="right"
+        android:text="上海A股"
+        android:textColor="@color/trade_pull_text"
+        android:textSize="14dp" />
+
+
+    <TextView
+        android:id="@+id/funds_account"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1.3"
+        android:gravity="right"
+        android:text="1500000"
+        android:textColor="@color/trade_pull_text"
+        android:textSize="14dp" />
+
+
+</LinearLayout>

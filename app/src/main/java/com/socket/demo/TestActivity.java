@@ -12,15 +12,14 @@ import android.widget.ImageView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.socket.demo.net.Callback;
-import com.socket.demo.net.Client;
-import com.socket.demo.net.STradeGateBizFun;
-import com.socket.demo.net.STradeGateBizFunA;
-import com.socket.demo.net.STradeGateError;
-import com.socket.demo.net.STradeGateLogin;
-import com.socket.demo.net.STradeGateLoginA;
-import com.socket.demo.net.STradeVerificationCode;
-import com.socket.demo.net.STradeVerificationCodeA;
+import com.ez08.trade.net.Callback;
+import com.ez08.trade.net.Client;
+import com.ez08.trade.net.STradeGateBizFun;
+import com.ez08.trade.net.STradeGateLogin;
+import com.ez08.trade.net.STradeGateLoginA;
+import com.ez08.trade.net.STradeVerificationCode;
+import com.ez08.trade.net.STradeVerificationCodeA;
+import com.ez08.trade.net.StringCallback;
 import com.xuhao.didi.core.pojo.OriginalData;
 
 public class TestActivity extends AppCompatActivity {
@@ -47,7 +46,6 @@ public class TestActivity extends AppCompatActivity {
                         byte[] picReal = resp.getPic();
                         Bitmap decodedByte = BitmapFactory.decodeByteArray(picReal, 0, picReal.length);
                         imageView.setImageBitmap(decodedByte);
-                        Log.e("STradeVerificationCodeA", resp.toString());
                     }
                 });
             }
@@ -70,16 +68,10 @@ public class TestActivity extends AppCompatActivity {
 
     public void holder(View view) {
         String body = "FUN=410501&TBL_IN=fundid,market,secuid,qryflag,count,poststr;,,,1,10,;";
-        Client.getInstance().send(new STradeGateBizFun(body), new Callback() {
+        Client.getInstance().sendBiz(body, new StringCallback() {
             @Override
-            public void onResult(boolean success, OriginalData data) {
-                if(success) {
-                    STradeGateBizFunA gateBizFunA = new STradeGateBizFunA(data.getHeadBytes(), data.getBodyBytes(),
-                            Client.getInstance().aesKey);
-                }else{
-                    STradeGateError gateError = new STradeGateError(data.getHeadBytes(), data.getBodyBytes(),
-                            Client.getInstance().aesKey);
-                }
+            public void onResult(boolean success, String data) {
+                Log.e("sendBiz", data);
             }
         });
     }

@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.ez08.trade.ui.view.FourPriceView
+        android:id="@+id/four"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout_height="40dp" />
+
+    <com.ez08.trade.ui.view.InputCodeView
+        android:id="@+id/input_code"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/trade_input_corner_border" />
+
+    <com.ez08.trade.ui.view.Level1HorizontalView
+        android:id="@+id/level1_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp"
+        android:paddingRight="10dp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/left"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <com.ez08.trade.ui.view.AdjustEditText
+                android:id="@+id/price"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="8dp"
+                app:ad_color="@color/trade_red"
+                app:hint="委托价格"
+                app:unit="0.01" />
+
+            <com.ez08.trade.ui.view.AdjustEditText
+                android:id="@+id/total_num"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="8dp"
+                app:ad_color="@color/trade_red"
+                app:hint="委托数量"
+                app:unit="100" />
+
+
+            <TextView
+                android:id="@+id/available_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:text="可用- -"
+                android:textColor="@color/trade_input_text"
+                android:textSize="12dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/full"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/trade_input_corner_border"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="@string/trade_full_available"
+                    android:textColor="@color/trade_black"
+                    android:textSize="12dp" />
+
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="1dp" />
+
+                <TextView
+                    android:id="@+id/half"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/trade_input_corner_border"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="@string/trade_half_available"
+                    android:textColor="@color/trade_black"
+                    android:textSize="12dp" />
+
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="1dp" />
+
+                <TextView
+                    android:id="@+id/one_three"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/trade_input_corner_border"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="@string/trade_one_third_available"
+                    android:textColor="@color/trade_black"
+                    android:textSize="12dp" />
+
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="1dp" />
+
+                <TextView
+                    android:id="@+id/one_fourth"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/trade_input_corner_border"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="@string/trade_one_fourth_available"
+                    android:textColor="@color/trade_black"
+                    android:textSize="12dp" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/submit"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/trade_red_corner_full"
+                android:gravity="center"
+                android:text="@string/trade_buy_action"
+                android:textColor="@color/trade_white"
+                android:textSize="13dp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/right"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <com.ez08.trade.ui.view.AdjustEditText
+                android:id="@+id/price_sell"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="8dp"
+                app:ad_color="@color/trade_blue"
+                app:hint="委托价格"
+                app:unit="0.01" />
+
+            <com.ez08.trade.ui.view.AdjustEditText
+                android:id="@+id/total_num_sell"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="8dp"
+                app:ad_color="@color/trade_blue"
+                app:hint="委托数量"
+                app:unit="100" />
+
+
+            <TextView
+                android:id="@+id/available_num_sell"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:text="可用- -"
+                android:textColor="@color/trade_input_text"
+                android:textSize="12dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/full_sell"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/trade_input_corner_border"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="@string/trade_full_available"
+                    android:textColor="@color/trade_black"
+                    android:textSize="12dp" />
+
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="1dp" />
+
+                <TextView
+                    android:id="@+id/half_sell"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/trade_input_corner_border"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="@string/trade_half_available"
+                    android:textColor="@color/trade_black"
+                    android:textSize="12dp" />
+
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="1dp" />
+
+                <TextView
+                    android:id="@+id/one_three_sell"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/trade_input_corner_border"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="@string/trade_one_third_available"
+                    android:textColor="@color/trade_black"
+                    android:textSize="12dp" />
+
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="1dp" />
+
+                <TextView
+                    android:id="@+id/one_fourth_sell"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/trade_input_corner_border"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="@string/trade_one_fourth_available"
+                    android:textColor="@color/trade_black"
+                    android:textSize="12dp" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/submit_sell"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/trade_blue_corner_full"
+                android:gravity="center"
+                android:text="@string/trade_sell_action"
+                android:textColor="@color/trade_white"
+                android:textSize="13dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

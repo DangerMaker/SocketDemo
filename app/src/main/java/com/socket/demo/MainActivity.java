@@ -15,22 +15,22 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.socket.demo.net.AbsSendable;
-import com.socket.demo.net.Constant;
-import com.socket.demo.net.OpensslHelper;
-import com.socket.demo.net.STradeBaseHead;
-import com.socket.demo.net.STradeCommOK;
-import com.socket.demo.net.STradeGateBizFun;
-import com.socket.demo.net.STradeGateError;
-import com.socket.demo.net.STradeGateLogin;
-import com.socket.demo.net.STradeGateLoginA;
-import com.socket.demo.net.STradePacketKeyExchange;
-import com.socket.demo.net.STradePacketKeyExchangeResp;
-import com.socket.demo.net.STradeVerificationCode;
-import com.socket.demo.net.STradeVerificationCodeA;
-import com.socket.demo.net.old.OldGateLogin;
-import com.socket.demo.net.old.OldKeyExchange;
-import com.socket.demo.net.old.OldKeyExchangeResp;
+import com.ez08.trade.net.AbsSendable;
+import com.ez08.trade.net.Constant;
+import com.ez08.trade.net.OpensslHelper;
+import com.ez08.trade.net.STradeBaseHead;
+import com.ez08.trade.net.STradeCommOK;
+import com.ez08.trade.net.STradeGateBizFun;
+import com.ez08.trade.net.STradeGateError;
+import com.ez08.trade.net.STradeGateLogin;
+import com.ez08.trade.net.STradeGateLoginA;
+import com.ez08.trade.net.STradePacketKeyExchange;
+import com.ez08.trade.net.STradePacketKeyExchangeResp;
+import com.ez08.trade.net.STradeVerificationCode;
+import com.ez08.trade.net.STradeVerificationCodeA;
+import com.ez08.trade.net.old.OldGateLogin;
+import com.ez08.trade.net.old.OldKeyExchange;
+import com.ez08.trade.net.old.OldKeyExchangeResp;
 import com.xuhao.didi.core.pojo.OriginalData;
 import com.xuhao.didi.core.protocol.IReaderProtocol;
 import com.xuhao.didi.core.utils.BytesUtils;
@@ -43,12 +43,11 @@ import com.xuhao.didi.socket.client.sdk.client.action.SocketActionAdapter;
 import com.xuhao.didi.socket.client.sdk.client.connection.IConnectionManager;
 import com.xuhao.didi.socket.client.sdk.client.connection.NoneReconnect;
 
-import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
-import static com.socket.demo.net.Constant.BIZ_PORT;
-import static com.socket.demo.net.Constant.IP;
+import static com.ez08.trade.net.Constant.BIZ_PORT;
+import static com.ez08.trade.net.Constant.IP;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -66,8 +65,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        System.loadLibrary("opensslLib");
 
         context = this;
         SLog.setIsDebug(true);

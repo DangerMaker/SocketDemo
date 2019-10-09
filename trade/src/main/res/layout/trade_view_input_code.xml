@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:layout_height="40dp">
+
+    <EditText
+        android:id="@+id/input"
+        android:visibility="visible"
+        style="@style/trade_stock_search_edit"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@null" />
+
+    <TextView
+        android:id="@+id/text"
+        android:visibility="gone"
+        style="@style/trade_stock_search_edit"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</RelativeLayout>

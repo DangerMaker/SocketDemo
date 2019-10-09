@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/bar_layout"
+            layout="@layout/toolbar_normal" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/trade_edit_title_custom"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:text="@string/trade_change_name" />
+
+            <EditText
+                android:id="@+id/name"
+                style="@style/trade_edit_content_custom"
+                android:layout_marginLeft="20dp"
+                android:focusable="false"
+                android:layout_toRightOf="@id/title"
+                android:hint="@string/trade_change_edit_hit" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/trade_gray" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/trade_edit_title_custom"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:text="@string/trade_change_sex" />
+
+            <EditText
+                android:id="@+id/sex"
+                style="@style/trade_edit_content_custom"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@id/title"
+                android:focusable="false"
+                android:hint="@string/trade_change_edit_hit" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/trade_gray" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/trade_edit_title_custom"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:text="@string/trade_change_card_type" />
+
+            <EditText
+                android:id="@+id/id_t"
+                style="@style/trade_edit_content_custom"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@id/title"
+                android:focusable="false"
+                android:hint="@string/trade_change_edit_hit" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/trade_gray" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/trade_edit_title_custom"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:text="@string/trade_change_card_num" />
+
+            <EditText
+                android:id="@+id/id_c"
+                style="@style/trade_edit_content_custom"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@id/title"
+                android:focusable="false"
+                android:hint="@string/trade_change_edit_hit" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/trade_gray" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/trade_edit_title_custom"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:text="@string/trade_change_phone" />
+
+            <EditText
+                android:id="@+id/phone"
+                style="@style/trade_edit_content_custom"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@id/title"
+                android:layout_weight="1"
+                android:hint="@string/trade_change_edit_hit" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/pencil"
+                android:layout_marginRight="10dp"
+                />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/trade_gray" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/trade_edit_title_custom"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:text="@string/trade_change_postcode" />
+
+            <EditText
+                android:id="@+id/post_code"
+                style="@style/trade_edit_content_custom"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@id/title"
+                android:layout_weight="1"
+                android:hint="@string/trade_change_edit_hit" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/pencil"
+                android:layout_marginRight="10dp"
+                />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/trade_gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/trade_edit_title_custom"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:text="@string/trade_change_email" />
+
+            <EditText
+                android:id="@+id/email"
+                android:layout_weight="1"
+                style="@style/trade_edit_content_custom"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@id/title"
+                android:hint="@string/trade_change_edit_hit" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/pencil"
+                android:layout_marginRight="10dp"
+                />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/trade_gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/trade_edit_title_custom"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:text="@string/trade_change_address" />
+
+            <EditText
+                android:id="@+id/addr"
+                style="@style/trade_edit_content_custom"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="1"
+                android:layout_toRightOf="@id/title"
+                android:hint="@string/trade_change_edit_hit" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/pencil"
+                android:layout_marginRight="10dp"
+                />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/trade_gray" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="5dp"
+            android:text="@string/trade_change_tips"
+            android:textColor="@color/trade_pull_text"
+            android:textSize="12dp" />
+
+        <Button
+            android:id="@+id/submit"
+            style="@style/trade_red_button_custom"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="20dp"
+            android:text="@string/trade_confirm" />
+    </LinearLayout>
+</ScrollView>

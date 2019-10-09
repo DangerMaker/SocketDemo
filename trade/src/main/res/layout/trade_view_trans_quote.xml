@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.ez08.trade.ui.view.TradeTransView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/layout_quote"
+        android:layout_width="match_parent"
+        android:background="@drawable/trade_input_white_bg"
+        android:layout_height="@dimen/adjust_edit_text_high"
+        >
+
+        <TextView
+            android:id="@+id/quote_way"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:gravity="center"
+            android:text="可转债转股"
+            android:textColor="@color/trade_black"
+            android:textSize="15dp" />
+
+        <ImageView
+            android:layout_width="@dimen/adjust_edit_text_high"
+            android:layout_height="@dimen/adjust_edit_text_high"
+            android:layout_alignParentRight="true"
+            android:padding="10dp"
+            android:src="@drawable/nav_down" />
+
+    </RelativeLayout>
+
+    <EditText
+        android:layout_marginTop="5dp"
+        android:id="@+id/input_code"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/adjust_edit_text_high"
+        android:gravity="center"
+        android:hint="@string/trade_input_code_hit"
+        android:inputType="text"
+        android:maxLines="1"
+        android:padding="5dp"
+        android:background="@null"
+        android:textColor="@color/trade_black"
+        android:textColorHint="@color/trade_input_text"
+        android:textSize="13dp" />
+
+    <com.ez08.trade.ui.view.AdjustEditText
+        android:id="@+id/price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:hint="委托价格"
+        app:unit="0.01"
+        android:layout_marginTop="8dp"/>
+
+
+    <com.ez08.trade.ui.view.AdjustEditText
+        android:id="@+id/total_num"
+        app:hint="委托数量"
+        app:unit="100"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"/>
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/max_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/available_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:text="可用多少股"
+            android:textColor="@color/trade_input_text"
+            android:textSize="12dp" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/trade_red_corner_full"
+        android:gravity="center"
+        android:text="确定"
+        android:textColor="@color/trade_white"
+        android:textSize="15dp" />
+
+
+</com.ez08.trade.ui.view.TradeTransView>

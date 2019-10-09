@@ -1,0 +1,96 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar" />
+
+    <style name="dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item><!--Dialog的windowFrame框为无 -->
+        <item name="android:windowIsFloating">true</item><!-- 是否漂现在activity上 -->
+        <item name="android:windowIsTranslucent">true</item><!-- 是否半透明 -->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent
+        </item><!--  去除黑色边框的关键设置项 -->
+        <item name="android:backgroundDimEnabled">true</item><!--屏幕背景是否变暗-->
+        <item name="android:backgroundDimAmount">0.6</item>
+    </style>
+
+
+    <style name="DayTheme" parent="AppTheme">
+
+    </style>
+
+    <style name="NightTheme" parent="AppTheme">
+
+    </style>
+
+    <style name="InversProgressBarStyle" parent="@android:style/Widget.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/drawable_horizontal_progress_bar</item>
+        <item name="android:indeterminateDrawable">
+            @drawable/drawable_indeterminate_horizontal_progress_bar
+        </item>
+    </style>
+
+    <style name="CompassCheckBox" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/trade_input_text</item>
+        <item name="colorControlActivated">@color/trade_red</item>
+    </style>
+
+    <style name="trade_font_title_others">
+        <item name="android:textSize">14dp</item>
+        <item name="android:textColor">@color/trade_black</item>
+    </style>
+
+    <style name="trade_font_title_options">
+        <item name="android:textSize">20dp</item>
+        <item name="android:textColor">@color/trade_text</item>
+    </style>
+
+    <style name="trade_font_sub_title_options">
+        <item name="android:textSize">14dp</item>
+        <item name="android:textColor">@color/trade_black</item>
+    </style>
+
+    <style name="trade_title_text">
+        <item name="android:textSize">17dp</item>
+        <item name="android:textColor">@color/trade_white</item>
+    </style>
+
+    <style name="trade_red_button_custom">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:textColor">@color/trade_white</item>
+        <item name="android:background">@drawable/trade_red_corner_full</item>
+    </style>
+
+    <style name="trade_edit_title_custom">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/trade_black</item>
+    </style>
+
+    <style name="trade_edit_content_custom">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/trade_black</item>
+        <item name="android:textColorHint">@color/trade_gray</item>
+        <item name="android:background">@null</item>
+    </style>
+
+    <style name="trade_stock_search_edit">
+        <item name="android:textSize">15dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/trade_black</item>
+        <item name="android:textColorHint">@color/trade_input_text</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:inputType">text</item>
+        <item name="android:background">@null</item>
+        <item name="android:hint">输入股票代码</item>
+        <item name="android:maxLines">1</item>
+    </style>
+</resources>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/trade_little_gray"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+    android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1.3"
+        android:gravity="left"
+        android:text="@string/trade_shareholders_code"
+        android:textColor="@color/trade_pull_text"
+        android:textSize="12dp" />
+
+    <TextView
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="right"
+        android:text="@string/trade_shareholders_name"
+        android:textColor="@color/trade_pull_text"
+        android:textSize="12dp" />
+
+    <TextView
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="right"
+        android:text="@string/trade_shareholders_market_type"
+        android:textColor="@color/trade_pull_text"
+        android:textSize="12dp" />
+
+    <TextView
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1.3"
+        android:gravity="right"
+        android:text="@string/trade_shareholders_funds_account"
+        android:textColor="@color/trade_pull_text"
+        android:textSize="12dp" />
+</LinearLayout>

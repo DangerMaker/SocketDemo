@@ -1,0 +1,5 @@
+﻿<resources>
+
+    <dimen name="adjust_edit_text_high">40dp</dimen>
+    <dimen name="line_width">0.5dp</dimen>
+</resources>

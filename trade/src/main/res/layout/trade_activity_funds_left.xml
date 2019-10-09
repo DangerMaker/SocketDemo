@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/bar_layout"
+        layout="@layout/toolbar_normal" />
+
+
+    <LinearLayout
+        android:id="@+id/bank_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/trade_edit_title_custom"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="存管银行" />
+
+        <TextView
+            android:id="@+id/bank_name"
+            android:layout_weight="1"
+            style="@style/trade_edit_title_custom"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/title"
+            android:text="招商银行"
+            />
+
+        <ImageView
+            android:id="@+id/bank_nav"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="18dp"
+            android:src="@drawable/nav_down" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/trade_gray" />
+
+    <LinearLayout
+        android:id="@+id/rmb_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/trade_edit_title_custom"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="选择币种" />
+
+        <TextView
+            android:id="@+id/rmb"
+            android:layout_weight="1"
+            style="@style/trade_edit_title_custom"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/title"
+            android:text="人民币"
+            />
+
+        <ImageView
+            android:id="@+id/rmb_nav"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="18dp"
+            android:src="@drawable/nav_down" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/trade_gray" />
+
+
+    <LinearLayout
+        android:id="@+id/result"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="总资产"
+            android:textColor="@color/trade_input_text"
+            android:textSize="13dp" />
+
+
+        <TextView
+            android:id="@+id/funds"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:text="150000"
+            android:textColor="@color/trade_item_text"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/title2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="资金账户"
+            android:textColor="@color/trade_input_text"
+            android:textSize="13dp" />
+
+
+        <TextView
+            android:id="@+id/funds2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="20dp"
+            android:text="123456789"
+            android:textColor="@color/trade_item_text"
+            android:textSize="15dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="@color/trade_gray" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/submit"
+        style="@style/trade_red_button_custom"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="20dp"
+        android:text="查询余额" />
+</LinearLayout>

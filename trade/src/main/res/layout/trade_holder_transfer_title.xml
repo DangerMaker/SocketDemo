@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
+    android:background="@color/trade_little_gray"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+    android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="3"
+        android:layout_marginLeft="12dp"
+        android:gravity="left"
+        android:text="转账时间"
+        android:textColor="@color/trade_pull_text"
+        android:textSize="12dp" />
+
+    <TextView
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="3"
+        android:gravity="right"
+        android:text="转账金额"
+        android:textColor="@color/trade_pull_text"
+        android:textSize="12dp" />
+
+    <TextView
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="2"
+        android:gravity="right"
+        android:text="状态"
+        android:textColor="@color/trade_pull_text"
+        android:textSize="12dp" />
+
+</LinearLayout>

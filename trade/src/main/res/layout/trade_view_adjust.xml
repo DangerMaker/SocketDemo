@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp">
+
+    <View
+        android:id="@+id/line1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/trade_red" />
+
+    <View
+        android:id="@+id/line2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/trade_red" />
+
+    <View
+        android:id="@+id/line3"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:background="@color/trade_red" />
+
+    <View
+        android:id="@+id/line4"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:background="@color/trade_red" />
+
+    <ImageView
+        android:id="@+id/reduce"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:padding="5dp"
+        android:src="@drawable/trade_reduce" />
+
+    <ImageView
+        android:id="@+id/plus"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:padding="5dp"
+        android:src="@drawable/trade_plus" />
+
+    <View
+        android:id="@+id/line5"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@id/reduce"
+        android:background="@color/trade_red" />
+
+    <View
+        android:id="@+id/line6"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:layout_toLeftOf="@id/plus"
+        android:background="@color/trade_red" />
+
+    <EditText
+        android:id="@+id/trade_entrust_num"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_toLeftOf="@id/plus"
+        android:layout_toRightOf="@id/reduce"
+        android:background="@null"
+        android:gravity="center"
+        android:hint="@string/trade_entrust_num"
+        android:inputType="number"
+        android:maxLines="1"
+        android:padding="5dp"
+        android:textColorHint="@color/trade_input_text"
+        android:textSize="15dp" />
+
+</RelativeLayout>

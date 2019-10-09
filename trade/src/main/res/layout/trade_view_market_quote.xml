@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.ez08.trade.ui.view.TradeMarketView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/input_code"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/adjust_edit_text_high"
+        android:gravity="center"
+        android:hint="@string/trade_input_code_hit"
+        android:inputType="text"
+        android:maxLines="1"
+        android:padding="5dp"
+        android:textColor="@color/trade_black"
+        android:textColorHint="@color/trade_input_text"
+        android:textSize="13dp" />
+
+
+    <RelativeLayout
+        android:visibility="visible"
+        android:id="@+id/layout_quote"
+        android:layout_width="match_parent"
+        android:background="@drawable/trade_input_white_bg"
+        android:layout_height="@dimen/adjust_edit_text_high"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:id="@+id/quote_way"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:gravity="center"
+            android:text="报价方式"
+            android:textColor="@color/trade_black"
+            android:textSize="15dp" />
+
+        <ImageView
+            android:layout_width="@dimen/adjust_edit_text_high"
+            android:layout_height="@dimen/adjust_edit_text_high"
+            android:layout_alignParentRight="true"
+            android:padding="10dp"
+            android:src="@drawable/nav_down" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/adjust_edit_text_high"
+        android:layout_marginTop="5dp">
+
+        <ImageView
+            android:id="@+id/left_reduce_num"
+            android:layout_width="@dimen/adjust_edit_text_high"
+            android:layout_height="@dimen/adjust_edit_text_high"
+            android:padding="5dp"
+            android:src="@drawable/trade_reduce" />
+
+        <ImageView
+            android:id="@+id/right_plus_num"
+            android:layout_width="@dimen/adjust_edit_text_high"
+            android:layout_height="@dimen/adjust_edit_text_high"
+            android:layout_alignParentRight="true"
+            android:padding="5dp"
+            android:src="@drawable/trade_plus" />
+
+        <EditText
+            android:id="@+id/trade_entrust_num"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/adjust_edit_text_high"
+            android:layout_toLeftOf="@id/right_plus_num"
+            android:layout_toRightOf="@id/left_reduce_num"
+            android:background="@drawable/trade_input_white_bg"
+            android:gravity="center"
+            android:hint="@string/trade_entrust_num"
+            android:inputType="number"
+            android:maxLines="1"
+            android:padding="5dp"
+            android:textColorHint="@color/trade_input_text"
+            android:textSize="15dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/available_num"
+            android:padding="2dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="可用多少股"
+            android:textColor="@color/trade_input_text"
+            android:textSize="12dp" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/full"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="@string/trade_full_available"
+            android:textColor="@color/trade_black"
+            android:textSize="12dp" />
+
+        <View
+            android:layout_width="10dp"
+            android:layout_height="1dp" />
+
+        <TextView
+            android:id="@+id/half"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="@string/trade_half_available"
+            android:textColor="@color/trade_black"
+            android:textSize="12dp" />
+
+        <View
+            android:layout_width="10dp"
+            android:layout_height="1dp" />
+
+        <TextView
+            android:id="@+id/one_three"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="@string/trade_one_third_available"
+            android:textColor="@color/trade_black"
+            android:textSize="12dp" />
+
+        <View
+            android:layout_width="10dp"
+            android:layout_height="1dp" />
+
+        <TextView
+            android:id="@+id/one_fourth"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="@string/trade_one_fourth_available"
+            android:textColor="@color/trade_black"
+            android:textSize="12dp" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/adjust_edit_text_high"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/trade_red_corner_full"
+        android:gravity="center"
+        android:text="@string/trade_buy_action"
+        android:textColor="@color/trade_white"
+        android:textSize="13dp" />
+
+
+</com.ez08.trade.ui.view.TradeMarketView>

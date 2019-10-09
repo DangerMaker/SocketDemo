@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/bar_layout"
+        layout="@layout/toolbar_normal" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/trade_edit_title_custom"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="存管银行" />
+
+        <TextView
+            style="@style/trade_edit_title_custom"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/title"
+            android:text="招商银行"
+            />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/trade_gray" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/trade_edit_title_custom"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="转账金额" />
+
+        <EditText
+            android:layout_weight="1"
+            style="@style/trade_edit_content_custom"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/title"
+            android:layout_marginRight="10dp"
+            android:hint="请输入转账金额" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/trade_gray"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            />
+
+        <TextView
+            android:layout_marginLeft="20dp"
+            style="@style/trade_edit_title_custom"
+            android:layout_centerVertical="true"
+            android:textColor="@color/trade_blue"
+            android:layout_marginRight="20dp"
+            android:text="全部转出" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/trade_gray" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/trade_edit_title_custom"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="资金密码" />
+
+        <EditText
+            android:layout_weight="1"
+            style="@style/trade_edit_content_custom"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/title"
+            android:hint="请输入银行密码" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/trade_gray" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="5dp"
+        android:text="可转账时间一般为交易日9:30-15:00"
+        android:textColor="@color/trade_pull_text"
+        android:textSize="12dp" />
+
+
+    <Button
+        android:id="@+id/submit"
+        style="@style/trade_red_button_custom"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="20dp"
+        android:text="确入转出到银行" />
+</LinearLayout>

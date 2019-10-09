@@ -1,3 +1,115 @@
 <resources>
     <string name="app_name">trade</string>
+
+    <string name="price_format">%1$.2f元</string>
+
+    <string name="srl_header_pulling">下拉可以刷新</string>
+    <string name="srl_header_refreshing">正在刷新…</string>
+    <string name="srl_header_loading">等待底部加载完成…</string>
+    <string name="srl_header_release">释放立即刷新</string>
+    <string name="srl_header_finish">刷新完成</string>
+    <string name="srl_header_failed">刷新失败</string>
+    <string name="srl_header_update">上次更新 M-d HH:mm</string>
+    <string name="srl_header_secondary">释放进入二楼</string>
+
+    <string name="srl_footer_pulling">上拉加载更多</string>
+    <string name="srl_footer_release">释放立即加载</string>
+    <string name="srl_footer_loading">正在加载…</string>
+    <string name="srl_footer_refreshing">等待头部刷新完成…</string>
+    <string name="srl_footer_finish">加载完成</string>
+    <string name="srl_footer_failed">加载失败</string>
+    <string name="srl_footer_nothing">没有更多数据了</string>
+
+    <string name="srl_content_empty">SmartRefreshLayout中没有找到内容视图。您是否忘记在xml布局文件中添加？</string>
+    <string name="srl_component_falsify" formatted="false">%s 虚假区域\n代表运行时拖动的高度【%.1fdp】 \n而不会显示任何东西</string>
+
+    <string name="trade_register_tips">没有第一创业账户? 立即开通</string>
+    <string name="trade_login">登录</string>
+    <string name="trade_remember_password">记住密码</string>
+    <string name="trade_forget_password">忘记账号？</string>
+    <string name="trade_username_hint">请输入手机号或卡号</string>
+    <string name="trade_password_hint">密码</string>
+    <string name="trade_test_site">测试占位</string>
+
+    <string name="trade_input_code_hit">输入股票代码</string>
+    <string name="trade_entrust_price">委托价格</string>
+    <string name="trade_entrust_num">委托数量</string>
+    <string name="trade_buy_action">立即买入</string>
+    <string name="trade_sell_action">立即卖出</string>
+    <string name="trade_fresh_stock_buy">一键申购</string>
+    <string name="trade_full_available">全仓</string>
+    <string name="trade_half_available">半仓</string>
+    <string name="trade_one_third_available">1/3仓</string>
+    <string name="trade_one_fourth_available">1/4仓</string>
+
+    <string name="trade_stock_name">股票名称</string>
+    <string name="trade_stock_profit">盈亏</string>
+    <string name="trade_hand_available">持仓/可用</string>
+    <string name="trade_prime_last">成本/现价</string>
+
+    <string name="trade_entrust_time">委托时间</string>
+    <string name="trade_entrust_average">委托价</string>
+    <string name="trade_entrust_deal">委托量/成交量</string>
+    <string name="trade_entrust_cancel">状态</string>
+    <string name="trade_query">查询</string>
+    <string name="trade_select_all">全选</string>
+    <string name="trade_market_price_buy">市价买入</string>
+
+    <string name="trade_deal_time">成交时间</string>
+    <string name="trade_deal_price">成交价</string>
+    <string name="trade_deal_volume">成交量</string>
+    <string name="trade_deal_mount">成交额</string>
+
+    <string name="trade_fresh_available_num">申购数量</string>
+    <string name="trade_confirm_change">确认修改</string>
+    <string name="trade_confirm">确认</string>
+    <string name="trade_pwd_type1">交易类型　</string>
+    <string name="trade_old_pwd">原密码　　</string>
+    <string name="trade_new_pwd">新密码　　</string>
+    <string name="trade_confirm_pwd">确认新密码</string>
+    <string name="trade_input_pwd_hint">请输入</string>
+    <string name="trade_pwd_type_funds">资金密码</string>
+    <string name="trade_pwd_type_trade">交易密码</string>
+
+    <string name="trade_change_name">客户名称</string>
+    <string name="trade_change_sex">客户性别</string>
+    <string name="trade_change_card_type">证件类型</string>
+    <string name="trade_change_card_num">证件号码</string>
+    <string name="trade_change_phone">联系电话</string>
+    <string name="trade_change_postcode">邮政编码</string>
+    <string name="trade_change_email">电子邮件</string>
+    <string name="trade_change_address">联系地址</string>
+    <string name="trade_change_edit_hit">请输入</string>
+    <string name="trade_change_tips">提示：请您务必核对修改信息，确保真实、准确、完整，并符合有关要求，以便于我司服务人员与您保持必要的联系</string>
+
+    <string name="trade_risk_type">当前风险评价类型</string>
+    <string name="trade_risk_score">当前风险评价得分</string>
+    
+    <string name="trade_shareholders_code">股东代码</string>
+    <string name="trade_shareholders_name">股东姓名</string>
+    <string name="trade_shareholders_market_type">市场类别</string>
+    <string name="trade_shareholders_funds_account">资金账号</string>
+
+    <string name="trade_securities_code">证券代码</string>
+    <string name="trade_securities_name">证券名称</string>
+    <string name="trade_available_stock_num">可用股数</string>
+    <string name="trade_declare_id_code">收购人代码</string>
+    <string name="trade_declare_num">预受数量</string>
+
+    <string name="trade_notice_msg">请输入正确的信息</string>
+    <string name="trade_commit_vote">提交投票结果</string>
+    <string name="trade_login_username">请输入用户名</string>
+    <string name="trade_login_pwd">请输入密码</string>
+    <string name="trade_login_verity">请输入验证码</string>
+    <string name="trade_login_title">第一创业交易登录</string>
+    <string name="trade_default_value">--</string>
+    <string name="trade_phoneNum">手机号</string>
+    <string name="trade_verifity">验证码</string>
+    <string name="trade_input_phoneNum">请输入手机号</string>
+    <string name="trade_input_verifity">请输入验证码</string>
+    <string name="trade_send_verifity">获取验证码</string>
+    <string name="trade_retry_verifity">重新获取验证码</string>
+    <string name="trade_input_cancel">取消</string>
+    <string name="trade_input_commit">提交</string>
+    <string name="trade_phone_check">手机号码验证</string>
 </resources>

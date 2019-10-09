@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/bar_layout"
+        layout="@layout/toolbar_normal" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/bar_layout"
+        android:layout_above="@+id/btnCommit"
+        />
+   <TextView
+       android:id="@+id/btnCommit"
+       android:layout_width="match_parent"
+       android:layout_height="48dp"
+       android:layout_alignParentBottom="true"
+       android:background="@color/sdf"
+       android:text="@string/trade_commit_vote"
+       android:gravity="center"
+       android:textColor="@color/trade_white"
+       />
+</RelativeLayout>

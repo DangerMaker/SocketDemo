@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    >
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="海天酱油第一次股东大会"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/trade_black"
+        android:textSize="15dp" />
+
+    <View
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="7dp"
+        android:layout_height="1dp"
+        android:background="@color/trade_gray" />
+
+    <TextView
+        android:id="@+id/meeting_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="股东大会代码：1008302302"
+        android:textColor="@color/trade_pull_text"
+        android:layout_marginBottom="7dp"
+        android:textSize="13dp" />
+
+    <TextView
+        android:id="@+id/company_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="股东大会代码：1008302302"
+        android:textColor="@color/trade_pull_text"
+        android:layout_marginBottom="7dp"
+        android:textSize="13dp" />
+
+    <TextView
+        android:id="@+id/company_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="股东大会代码：1008302302"
+        android:textColor="@color/trade_pull_text"
+        android:layout_marginBottom="7dp"
+        android:textSize="13dp" />
+
+    <TextView
+        android:id="@+id/start_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="股东大会代码：1008302302"
+        android:textColor="@color/trade_pull_text"
+        android:layout_marginBottom="7dp"
+        android:textSize="13dp" />
+
+    <TextView
+        android:id="@+id/end_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="股东大会代码：1008302302"
+        android:textColor="@color/trade_pull_text"
+        android:layout_marginBottom="7dp"
+        android:textSize="13dp" />
+
+    <Button
+        android:id="@+id/enter"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:background="@drawable/trade_red_corner_full"
+        android:gravity="center"
+        android:text="进入投票"
+        android:textColor="@color/trade_white"
+        android:textSize="13dp" />
+
+    <View
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/trade_gray" />
+
+</LinearLayout>

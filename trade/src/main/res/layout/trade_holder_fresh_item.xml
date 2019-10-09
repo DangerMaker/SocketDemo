@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+    android:background="@color/trade_white"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.AppCompatCheckBox
+        android:id="@+id/checkbox"
+        style="@style/CompassCheckBox"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/check_box_compass"
+        android:button="@null"
+        />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@id/checkbox">
+
+        <TextView
+            android:id="@+id/txt_name"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:gravity="center_vertical"
+            android:text="格力电器"
+            android:textColor="@color/trade_item_text"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/txt_code"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/txt_name"
+            android:gravity="center_vertical"
+            android:text="600211"
+            android:textColor="@color/trade_input_text"
+            android:textSize="15dp" />
+
+        <View
+            android:layout_below="@id/txt_name"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/trade_gray" />
+
+
+        <TextView
+            android:id="@+id/txt_num_title"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:gravity="center_vertical"
+            android:text="@string/trade_fresh_available_num"
+            android:textColor="@color/trade_item_text"
+            android:layout_below="@id/txt_name"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/txt_num"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:gravity="center_vertical"
+            android:text="可申购0股"
+            android:textColor="@color/trade_input_text"
+            android:layout_below="@id/txt_num_title"
+            android:textSize="14dp" />
+
+        <RelativeLayout
+            android:id="@+id/layout1"
+            android:layout_below="@id/txt_name"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_width="170dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/trade_input_bg">
+
+            <ImageView
+                android:id="@+id/left_reduce_num"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="5dp"
+                android:src="@drawable/trade_reduce" />
+
+            <ImageView
+                android:id="@+id/right_plus_num"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:padding="5dp"
+                android:src="@drawable/trade_plus" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_toLeftOf="@id/right_plus_num"
+                android:layout_toRightOf="@id/left_reduce_num"
+                android:background="@drawable/trade_input_white_bg"
+                android:gravity="center"
+                android:hint="@string/trade_entrust_num"
+                android:maxLines="1"
+                android:padding="5dp"
+                android:textColorHint="@color/trade_input_text"
+                android:textSize="15dp" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

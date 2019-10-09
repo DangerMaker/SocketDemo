@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/trade_login_bg"
+    android:orientation="vertical">
+    <include
+        layout="@layout/toolbar_normal"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/trade_white"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="49dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/diyichuangye" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:background="@color/trade_gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/account_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="50dip"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dip"
+                    android:text="账户类型"
+                    android:textColor="@color/trade_black"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/account_type"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/trade_black"
+                    android:layout_weight="1"
+                    android:text="资金账户"
+                    android:textSize="14dp" />
+
+                <ImageView
+                    android:id="@+id/account_type_nav"
+                    android:layout_width="25dip"
+                    android:layout_height="25dip"
+                    android:layout_marginLeft="20dip"
+                    android:layout_marginRight="20dp"
+                    android:padding="5dp"
+                    android:src="@drawable/nav_down" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dip"
+                android:layout_marginLeft="20dip"
+                android:layout_marginRight="20dip"
+                android:background="@color/trade_gray" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="50dip"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dip"
+                    android:text="资金账号"
+                    android:textColor="@color/trade_black"
+                    android:textSize="14dp" />
+
+                <com.ez08.trade.ui.view.MyDelEditetext
+                    android:id="@+id/username_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="25dip"
+                    android:background="@null"
+                    android:ems="10"
+                    android:hint="@string/trade_change_edit_hit"
+                    android:numeric="integer"
+                    android:singleLine="true"
+                    android:textColorHint="#c9c9c9"
+                    android:textCursorDrawable="@null"
+                    android:textSize="14dp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dip"
+                android:layout_marginLeft="20dip"
+                android:layout_marginRight="20dip"
+                android:background="@color/trade_gray" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="50dip"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dip"
+                    android:text="交易密码"
+                    android:textColor="@color/trade_black"
+                    android:textSize="14dp" />
+
+
+                <com.ez08.trade.ui.view.MyDelEditetext
+                    android:id="@+id/password_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="20dip"
+                    android:layout_marginRight="25dip"
+                    android:background="@null"
+                    android:ems="10"
+                    android:hint="@string/trade_password_hint"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:textColorHint="#c9c9c9"
+                    android:textCursorDrawable="@null"
+                    android:textSize="14dp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dip"
+                android:layout_marginLeft="20dip"
+                android:layout_marginRight="20dip"
+                android:background="@color/trade_gray" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="50dip"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dip"
+                    android:text="安全方式"
+                    android:textColor="@color/trade_black"
+                    android:textSize="14dp" />
+
+                <com.ez08.trade.ui.view.MyDelEditetext
+                    android:id="@+id/check_code"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="20dip"
+                    android:layout_marginRight="25dip"
+                    android:background="@null"
+                    android:ems="10"
+                    android:hint="验证码"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:textColorHint="#c9c9c9"
+                    android:textCursorDrawable="@null"
+                    android:textSize="14dp" />
+
+                <ImageView
+                    android:id="@+id/safe_code_iv"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="20dip"
+                    android:layout_marginRight="20dp"
+                    android:padding="5dp"
+                    android:clickable="false"
+                    android:scaleType="fitXY"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:background="@color/trade_gray" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="5dip"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/login_auto_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dip"
+            android:gravity="center_vertical">
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/login_auto_check"
+                android:layout_width="30dip"
+                android:layout_height="30dip"
+                android:theme="@style/CompassCheckBox" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:text="@string/trade_remember_password"
+                android:textColor="@color/trade_black"
+                android:textSize="14dp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/forget_pass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dip"
+            android:text="@string/trade_forget_password"
+            android:textColor="@color/trade_text"
+            android:textSize="14dp"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/login_btn"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="20dip"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dip"
+        android:background="@drawable/trade_white_button"
+        android:text="@string/trade_login"
+        android:textColor="@color/trade_black"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/register_btn"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dip"
+        android:text="@string/trade_register_tips"
+        android:textColor="@color/trade_black"
+        android:textSize="17dp" />
+
+</LinearLayout>

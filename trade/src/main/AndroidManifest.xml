@@ -1,2 +1,53 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ez08.trade" />
+    package="com.ez08.trade" >
+
+    <application>
+        <activity android:name=".ui.user.TradeLoginActivity"/>
+        <activity android:name=".ui.trade.TradeActionActivity" />
+        <activity android:name=".ui.TradeWebActivity" />
+        <activity android:name=".ui.bank.TradeBankActivity" />
+        <activity android:name=".ui.fresh_stock.TradeNewStockActivity" />
+        <activity android:name=".ui.invite.TradeInvitedBuyActivity" />
+        <activity android:name=".ui.other.TradeOtherServiceActivity" />
+        <activity android:name=".ui.query.TradeQueryActivity" />
+        <activity android:name=".ui.user.TradeShareholdersActivity" />
+        <activity android:name=".ui.user.TradeChangeMsgActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|stateUnchanged"
+            />
+        <activity android:name=".ui.user.TradeChangePwdActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|stateUnchanged"
+            />
+        <activity android:name=".ui.vote.TradeNetVoteActivity" />
+        <activity android:name=".ui.trade.TradeActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|stateUnchanged" />
+        <activity android:name=".ui.fresh_stock.TradeFastStockActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|stateUnchanged"
+            />
+        <activity android:name=".ui.user.TradeRiskLevelActivity" />
+        <activity android:name=".ui.query.TradeQueryDealActivity" />
+        <activity android:name=".ui.query.TradeQueryEntrustActivity" />
+        <activity android:name=".ui.bank.TradeBank2SecurityActivity" />
+        <activity android:name=".ui.bank.TradeBankQueryActivity" />
+        <activity android:name=".ui.bank.TradeSecurity2BankActivity" />
+        <activity android:name=".ui.TradeMenuActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            />
+        <activity android:name=".ui.fresh_stock.TradeDaijiaoActivity" />
+        <activity android:name=".ui.fresh_stock.TradePeihaoActivity" />
+        <activity android:name=".ui.fresh_stock.TradeZhongqianActivity" />
+        <activity android:name=".ui.trade.TradeMarketPriceActivity" />
+        <activity android:name=".ui.trade.TradeBatActivity" />
+        <activity android:name=".ui.invite.TradeInvitedBuyActivity1" />
+        <activity android:name=".ui.other.TradeTransStockActivity" />
+        <activity android:name=".ui.trade.TradeBuySellActivity" />
+        <activity android:name=".ui.other.TradeOrderActivity" />
+        <activity android:name=".ui.other.TradeNewOrderActivity" />
+        <activity android:name=".ui.vote.TradeVoteListActivity" />
+        <activity android:name=".ui.vote.TradeVoteDetailActivity" />
+        <activity android:name=".ui.vote.TradeVoteQueryActivity" />
+
+    </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+</manifest>

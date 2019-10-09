@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:background="@color/trade_login_bg"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:background="@color/trade_red">
+
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:padding="10dip"
+            android:src="@drawable/back_indicator" />
+
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/trade_title_text"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:gravity="center"
+            android:text="@string/trade_query" />
+
+        <TextView
+            android:id="@+id/sub_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:textSize="15dp"
+            android:textColor="@color/trade_white"
+            android:layout_alignParentRight="true"
+            android:text="@string/trade_query" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tips"
+        android:visibility="visible"
+        android:layout_below="@id/bar_layout"
+        android:layout_width="match_parent"
+        android:background="@color/trade_dan_yellow"
+        android:layout_height="35dp"
+        android:textColor="@color/trade_black"
+        android:textSize="14dp"
+        android:gravity="center_vertical|left"
+        android:paddingLeft="10dp"
+        />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tips" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:layout_alignParentBottom="true">
+
+        <RelativeLayout
+            android:id="@+id/layout_check"
+            android:layout_width="130dp"
+            android:background="@color/trade_white"
+            android:layout_height="match_parent">
+
+
+            <android.support.v7.widget.AppCompatCheckBox
+                android:id="@+id/checkbox"
+                style="@style/CompassCheckBox"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/check_box_compass"
+                android:button="@null" />
+
+
+            <TextView
+                android:id="@+id/select_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/checkbox"
+                android:text="@string/trade_select_all"
+                android:textSize="15dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/trade_gray"/>
+
+        </RelativeLayout>
+
+
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/layout_check"
+            android:background="@color/trade_red"
+            android:gravity="center"
+            android:text="@string/trade_fresh_stock_buy"
+            android:textColor="@color/trade_white"
+            android:textSize="15dp" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

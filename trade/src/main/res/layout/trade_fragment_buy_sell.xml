@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="5dp">
+
+    <LinearLayout
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="2dp"
+                android:text="现价"
+                android:textColor="@color/trade_black"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/newest_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="22.22"
+                android:textColor="@color/trade_input_text"
+                android:textSize="12dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="2dp"
+                android:text="昨收"
+                android:textColor="@color/trade_black"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/last_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="22.22"
+                android:textColor="@color/trade_input_text"
+                android:textSize="12dp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="2dp"
+                android:text="涨停"
+                android:textColor="@color/trade_black"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/limit_up_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="22.22"
+                android:textColor="@color/trade_input_text"
+                android:textSize="12dp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="2dp"
+                android:text="跌停"
+                android:textColor="@color/trade_black"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/limit_down_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="22.22"
+                android:textColor="@color/trade_input_text"
+                android:textSize="12dp" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/input_code"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="5dp"
+        android:background="@null"
+        android:gravity="center"
+        android:hint="@string/trade_input_code_hit"
+        android:inputType="text"
+        android:maxLines="1"
+        android:padding="5dp"
+        android:textColor="@color/trade_black"
+        android:textColorHint="@color/trade_input_text"
+        android:textSize="13dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/top"
+        android:orientation="horizontal"
+        android:paddingLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:paddingRight="5dp"
+        >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="3dp"
+            android:layout_weight="1">
+
+            <include layout="@layout/trade_item_five" />
+            <include layout="@layout/trade_item_five" />
+            <include layout="@layout/trade_item_five" />
+            <include layout="@layout/trade_item_five" />
+            <include layout="@layout/trade_item_five" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:orientation="vertical"
+            android:paddingTop="3dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <include layout="@layout/trade_item_five" />
+            <include layout="@layout/trade_item_five" />
+            <include layout="@layout/trade_item_five" />
+            <include layout="@layout/trade_item_five" />
+            <include layout="@layout/trade_item_five" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/left"
+            android:layout_width="0dp"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+
+            <!--<com.ez08.trade.ui.view.AdjustEditText-->
+                <!--android:id="@+id/price"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="40dp"-->
+                <!--app:hint="委托价格"-->
+                <!--app:unit="0.01"-->
+                <!--android:layout_marginTop="8dp"/>-->
+
+            <!--<com.ez08.trade.ui.view.AdjustEditText-->
+                <!--android:id="@+id/total_num"-->
+                <!--app:hint="委托数量"-->
+                <!--app:unit="100"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="40dp"-->
+                <!--android:layout_marginTop="8dp"/>-->
+
+
+            <!--<TextView-->
+                <!--android:id="@+id/available_num"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:padding="2dp"-->
+                <!--android:text="可用多少股"-->
+                <!--android:textColor="@color/trade_input_text"-->
+                <!--android:textSize="12dp" />-->
+
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="30dp"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:orientation="horizontal">-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/full"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="20dp"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:gravity="center"-->
+                    <!--android:maxLines="1"-->
+                    <!--android:text="@string/trade_full_available"-->
+                    <!--android:textColor="@color/trade_black"-->
+                    <!--android:textSize="12dp" />-->
+
+                <!--<View-->
+                    <!--android:layout_width="10dp"-->
+                    <!--android:layout_height="1dp" />-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/half"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="20dp"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:gravity="center"-->
+                    <!--android:maxLines="1"-->
+                    <!--android:text="@string/trade_half_available"-->
+                    <!--android:textColor="@color/trade_black"-->
+                    <!--android:textSize="12dp" />-->
+
+                <!--<View-->
+                    <!--android:layout_width="10dp"-->
+                    <!--android:layout_height="1dp" />-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/one_three"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="20dp"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:gravity="center"-->
+                    <!--android:maxLines="1"-->
+                    <!--android:text="@string/trade_one_third_available"-->
+                    <!--android:textColor="@color/trade_black"-->
+                    <!--android:textSize="12dp" />-->
+
+                <!--<View-->
+                    <!--android:layout_width="10dp"-->
+                    <!--android:layout_height="1dp" />-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/one_fourth"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="20dp"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:gravity="center"-->
+                    <!--android:maxLines="1"-->
+                    <!--android:text="@string/trade_one_fourth_available"-->
+                    <!--android:textColor="@color/trade_black"-->
+                    <!--android:textSize="12dp" />-->
+
+            <!--</LinearLayout>-->
+
+            <!--<Button-->
+                <!--android:id="@+id/submit"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="35dp"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:background="@drawable/trade_red_corner_full"-->
+                <!--android:gravity="center"-->
+                <!--android:text="@string/trade_buy_action"-->
+                <!--android:textColor="@color/trade_white"-->
+                <!--android:textSize="13dp" />-->
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/right"
+            android:layout_marginLeft="30dp"
+            android:layout_width="0dp"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+
+            <!--<com.ez08.trade.ui.view.AdjustEditText-->
+                <!--android:id="@+id/price_sell"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="40dp"-->
+                <!--app:hint="委托价格"-->
+                <!--app:unit="0.01"-->
+                <!--android:layout_marginTop="8dp"/>-->
+
+            <!--<com.ez08.trade.ui.view.AdjustEditText-->
+                <!--android:id="@+id/total_num_sell"-->
+                <!--app:hint="委托数量"-->
+                <!--app:unit="100"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="40dp"-->
+                <!--android:layout_marginTop="8dp"/>-->
+
+
+            <!--<TextView-->
+                <!--android:id="@+id/available_num_sell"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:padding="2dp"-->
+                <!--android:text="可用多少股"-->
+                <!--android:textColor="@color/trade_input_text"-->
+                <!--android:textSize="12dp" />-->
+
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="30dp"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:orientation="horizontal">-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/full_sell"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="20dp"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:gravity="center"-->
+                    <!--android:maxLines="1"-->
+                    <!--android:text="@string/trade_full_available"-->
+                    <!--android:textColor="@color/trade_black"-->
+                    <!--android:textSize="12dp" />-->
+
+                <!--<View-->
+                    <!--android:layout_width="10dp"-->
+                    <!--android:layout_height="1dp" />-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/half_sell"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="20dp"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:gravity="center"-->
+                    <!--android:maxLines="1"-->
+                    <!--android:text="@string/trade_half_available"-->
+                    <!--android:textColor="@color/trade_black"-->
+                    <!--android:textSize="12dp" />-->
+
+                <!--<View-->
+                    <!--android:layout_width="10dp"-->
+                    <!--android:layout_height="1dp" />-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/one_three_sell"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="20dp"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:gravity="center"-->
+                    <!--android:maxLines="1"-->
+                    <!--android:text="@string/trade_one_third_available"-->
+                    <!--android:textColor="@color/trade_black"-->
+                    <!--android:textSize="12dp" />-->
+
+                <!--<View-->
+                    <!--android:layout_width="10dp"-->
+                    <!--android:layout_height="1dp" />-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/one_fourth_sell"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="20dp"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:gravity="center"-->
+                    <!--android:maxLines="1"-->
+                    <!--android:text="@string/trade_one_fourth_available"-->
+                    <!--android:textColor="@color/trade_black"-->
+                    <!--android:textSize="12dp" />-->
+
+            <!--</LinearLayout>-->
+
+            <!--<Button-->
+                <!--android:id="@+id/submit_sell"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="35dp"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:background="@drawable/trade_red_corner_full"-->
+                <!--android:gravity="center"-->
+                <!--android:text="@string/trade_buy_action"-->
+                <!--android:textColor="@color/trade_white"-->
+                <!--android:textSize="13dp" />-->
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="trade_white">#FFFFFF</color>
+    <color name="trade_login_bg">#f2f2f2</color>
+    <color name="trade_text">#c8c6c6</color>
+    <color name="trade_input_text">#aeaeae</color>
+    <color name="trade_input">#e1e1e1</color>
+    <color name="trade_dark_gray">#696969</color>
+    <color name="trade_pull_text">#000000</color>
+
+    <color name="trade_red">#FF0000</color>
+    <color name="trade_green">#2E8B57</color>
+    <color name="trade_gray">#F1F1F1</color>
+    <color name="trade_black">#000000</color>
+    <color name="sdf">#FF0000</color>
+    <color name="darkBlue">#3366FF</color>
+    <color name="trade_blue">#3366FF</color>
+    <color name="trade_input_bg">#f2f5f9</color>
+    <color name="trade_item_text">@color/trade_black</color>
+    <color name="trade_dan_yellow">#FFFACD</color>
+    <color name="trade_qing">#B4CDCD</color>
+    <color name="trade_little_gray">#f2f2f2</color>
+
+</resources>

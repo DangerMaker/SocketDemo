@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/stock_info"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_marginLeft="12dp"
+        android:layout_height="match_parent"
+        android:gravity="left|center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dip"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/trade_pull_text"
+            android:text="20190409"
+            android:textSize="15dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/stock_price"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_gravity="center_horizontal"
+            android:text="普测"
+            android:textColor="@color/trade_pull_text"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dip"
+            android:layout_marginBottom="5dp"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/trade_pull_text"
+            android:text="736024"
+            android:textSize="15dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/stock_layout3"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.ez08.trade.ui.view.SingleLineAutoResizeTextView
+            android:id="@+id/id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dip"
+            android:layout_marginBottom="5dp"
+            android:maxLines="1"
+            android:layout_gravity="center"
+            android:textColor="@color/trade_pull_text"
+            android:text="10000001000000"
+            app:textColor="@color/trade_black"
+            app:textContent="10:10:23"
+            app:textSize="14dp"
+            app:autoSizeTextType="uniform"
+            android:textSize="15dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/stock_layout4"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dip"
+            android:layout_marginBottom="5dp"
+            android:layout_gravity="right"
+            android:textColor="@color/trade_pull_text"
+            android:text="2000"
+            android:layout_marginRight="10dp"
+            android:textSize="15dp" />
+    </LinearLayout>
+</LinearLayout>

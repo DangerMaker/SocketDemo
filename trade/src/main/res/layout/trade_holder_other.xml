@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="20dp"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
+    android:paddingRight="20dp"
+    >
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/trade_test_site"
+        style="@style/trade_font_title_others"
+        />
+
+    <TextView
+        android:id="@+id/extra"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/trade_test_site"
+        android:textColor="@color/trade_pull_text"
+        android:layout_centerVertical="true"
+        android:textSize="11dp"
+        android:layout_alignParentRight="true"
+        />
+</RelativeLayout>
