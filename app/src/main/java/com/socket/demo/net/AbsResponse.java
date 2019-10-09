@@ -6,6 +6,7 @@ import java.nio.ByteOrder;
 public class AbsResponse {
 
     protected byte[] body;
+    protected int wPid;
 
     public AbsResponse(byte[] head, byte[] originBody,byte[] aesKey) {
         ByteBuffer headBuffer = ByteBuffer.wrap(head);
@@ -26,6 +27,8 @@ public class AbsResponse {
         }else{
             body = encryptBody;
         }
+
+        wPid = sTradeBaseHead.wPid;
 
     }
 

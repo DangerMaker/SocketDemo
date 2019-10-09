@@ -24,7 +24,7 @@ public class STradeCommOK extends AbsPulseSendable {
     @Override
     protected void getHead(STradeBaseHead header) {
         header.wPid = AbsSendable.PID_TRADE_COMM_OK;
-        header.dwReqId = 10;
+        header.dwReqId = 0;
     }
 
     @Override

@@ -36,7 +36,7 @@ public class NetUtil {
                     break;
                 }
             }
-            return new String(buffer, 0, length, "GBK");
+            return new String(buffer, 0, length, "GB2312");
         } catch (Exception e) {
             return "";
         }

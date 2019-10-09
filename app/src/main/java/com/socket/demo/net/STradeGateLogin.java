@@ -1,13 +1,10 @@
 package com.socket.demo.net;
 
-import com.xuhao.didi.core.iocore.interfaces.ISendable;
-
 import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
 
-import static com.socket.demo.net.Constant.BIZ_HEAD_SIZE;
 import static com.socket.demo.net.Constant.UTF8;
+import static com.socket.demo.net.NetUtil.byteCopy;
 
 /**
  * //用户登陆（410301）
@@ -54,7 +51,7 @@ import static com.socket.demo.net.Constant.UTF8;
  * <p>
  * };
  */
-public class STradeGateLogin implements ISendable {
+public class STradeGateLogin extends AbsSendable {
 
     STradeGateUserInfo userinfo = STradeGateUserInfo.getInstance();
     byte[] sz_inputtype = new byte[2];
@@ -67,45 +64,20 @@ public class STradeGateLogin implements ISendable {
     byte bIsSessionId = 0;
     byte bIgnoreVerificationCode = 0;
 
-    public int getLength() {
-        return userinfo.getLength() +
-                2 +
-                65 +
-                2 +
-                16 +
-                21 +
-               9 +
-                19+ 1 + 1
-                ;
-    }
-
-    String ip;
-
-    public void setIP(String ip) {
-        this.ip = ip;
-    }
-
-//    public void setSzId(byte[] szId)
-//    {
-//        this.szVerificationId = szId;
-//    }
-
     String verifyCode;
     public void setVerifyCode(String verifyCode){
         this.verifyCode = verifyCode;
     }
 
     @Override
-    public byte[] parse() {
-        STradeBaseHead header = new STradeBaseHead();
-        header.wPid = 2010;
-        header.dwBodySize = header.dwRawSize =  getLength();
-        header.dwReqId = 10;
+    protected void getHead(STradeBaseHead header) {
+        header.wPid = PID_TRADE_GATE_LOGIN;
+    }
 
-        //fill body
+    @Override
+    protected void getBody(ByteBuffer bb) {
         String strUserType = "Z";
         String strUserId = "109000512";
-//        String strCheckCode = "3333"; //??
         String strVerifiCodeId = "1012"; //??
         String strPassword = "123123";
         String strNet2 = "ZNZ|000EC6CF8DA4|PLEXTOR";
@@ -121,12 +93,7 @@ public class STradeGateLogin implements ISendable {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-//
 
-        //parse
-        ByteBuffer bb = ByteBuffer.allocate(Constant.BIZ_HEAD_SIZE + getLength());
-        bb.order(ByteOrder.LITTLE_ENDIAN);
-        bb.put(header.parse());
         bb.put(userinfo.parse());
         bb.put(sz_inputtype);
         bb.put(sz_inputid);
@@ -135,12 +102,19 @@ public class STradeGateLogin implements ISendable {
         bb.put(szVerificationId);
         bb.put(szVerificationCode);
         bb.put(szReserved);
-        return bb.array();
     }
 
-    private void byteCopy(byte[] origin,byte[] target){
-        for (int i = 0; i < origin.length; i++) {
-           target[i] = origin[i];
-        }
+    @Override
+    protected int getBodyLength() {
+        return  sizeof(userinfo) +
+                sizeof(sz_inputtype) +
+                sizeof(sz_inputid) +
+                sizeof(sz_market) +
+                sizeof(btMD5_of_Client) +
+                sizeof(szVerificationId) +
+                sizeof(szVerificationCode) +
+                sizeof(szReserved) +
+                sizeof(bIsSessionId) +
+                sizeof(bIgnoreVerificationCode);
     }
 }

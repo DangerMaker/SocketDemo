@@ -12,16 +12,6 @@ import java.nio.ByteOrder;
  * DWORD    dwReqId;                    //一个socket仅支持同时存在一个未完成的请求
  * DWORD    dwErrorCode;
  * char    szError[0];
- * std::string toJSON(JNIEnv* env,const char* content)
- * {
- * cJSON *json = cJSON_CreateObject();
- * //
- * cJSON_AddNumberToObject(json,"dwReqId",(int)dwReqId);
- * cJSON_AddNumberToObject(json,"dwErrorCode",(int)dwErrorCode);
- * cJSON_AddStringToObject(json,"szError",NewCodedString(env,content,"GB2312",strlen(content)));
- * std::string jsonstr = cJSON_Print(json);
- * cJSON_Delete(json);
- * return jsonstr;
  * }
  */
 public class STradeGateError extends AbsResponse {

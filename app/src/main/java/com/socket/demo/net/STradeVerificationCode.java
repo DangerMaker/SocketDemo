@@ -19,7 +19,6 @@ public class STradeVerificationCode extends AbsSendable {
     @Override
     protected void getHead(STradeBaseHead header) {
         header.wPid = PID_TRADE_VERIFICATION_CODE;
-        header.dwReqId = dwReqId;
     }
 
     @Override

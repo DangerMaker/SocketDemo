@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':trade'
 include ':socket-client',':socket-common-interface','socket-core'

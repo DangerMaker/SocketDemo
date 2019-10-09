@@ -14,11 +14,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.socket.demo.net.Callback;
 import com.socket.demo.net.Client;
+import com.socket.demo.net.STradeGateBizFun;
+import com.socket.demo.net.STradeGateBizFunA;
+import com.socket.demo.net.STradeGateError;
 import com.socket.demo.net.STradeGateLogin;
 import com.socket.demo.net.STradeGateLoginA;
 import com.socket.demo.net.STradeVerificationCode;
 import com.socket.demo.net.STradeVerificationCodeA;
-import com.socket.demo.net.SnFactory;
 import com.xuhao.didi.core.pojo.OriginalData;
 
 public class TestActivity extends AppCompatActivity {
@@ -40,7 +42,7 @@ public class TestActivity extends AppCompatActivity {
                 Client.getInstance().send(new STradeVerificationCode(), new Callback() {
 
                     @Override
-                    public void onResult(OriginalData data) {
+                    public void onResult(boolean success, OriginalData data) {
                         STradeVerificationCodeA resp = new STradeVerificationCodeA(data.getHeadBytes(), data.getBodyBytes());
                         byte[] picReal = resp.getPic();
                         Bitmap decodedByte = BitmapFactory.decodeByteArray(picReal, 0, picReal.length);
@@ -60,8 +62,24 @@ public class TestActivity extends AppCompatActivity {
         tradeGateLogin.setVerifyCode(verify);
         Client.getInstance().send(tradeGateLogin, new Callback() {
             @Override
-            public void onResult(OriginalData data) {
-                STradeGateLoginA gateLoginA = new STradeGateLoginA(data.getHeadBytes(),data.getBodyBytes(),Client.getInstance().aesKey);
+            public void onResult(boolean success, OriginalData data) {
+                STradeGateLoginA gateLoginA = new STradeGateLoginA(data.getHeadBytes(), data.getBodyBytes(), Client.getInstance().aesKey);
+            }
+        });
+    }
+
+    public void holder(View view) {
+        String body = "FUN=410501&TBL_IN=fundid,market,secuid,qryflag,count,poststr;,,,1,10,;";
+        Client.getInstance().send(new STradeGateBizFun(body), new Callback() {
+            @Override
+            public void onResult(boolean success, OriginalData data) {
+                if(success) {
+                    STradeGateBizFunA gateBizFunA = new STradeGateBizFunA(data.getHeadBytes(), data.getBodyBytes(),
+                            Client.getInstance().aesKey);
+                }else{
+                    STradeGateError gateError = new STradeGateError(data.getHeadBytes(), data.getBodyBytes(),
+                            Client.getInstance().aesKey);
+                }
             }
         });
     }

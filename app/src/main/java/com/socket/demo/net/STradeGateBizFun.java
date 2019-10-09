@@ -38,7 +38,6 @@ public class STradeGateBizFun extends AbsSendable {
     @Override
     protected void getHead(STradeBaseHead header) {
         header.wPid = PID_TRADE_GATE_BIZFUN;
-        header.dwReqId = 5;
     }
 
     @Override

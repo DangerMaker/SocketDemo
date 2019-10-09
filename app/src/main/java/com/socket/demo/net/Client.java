@@ -1,13 +1,9 @@
 package com.socket.demo.net;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.os.Looper;
-import android.telecom.Call;
 import android.util.Log;
 
-import com.xuhao.didi.core.iocore.interfaces.ISendable;
 import com.xuhao.didi.core.pojo.OriginalData;
 import com.xuhao.didi.core.protocol.IReaderProtocol;
 import com.xuhao.didi.core.utils.BytesUtils;
@@ -89,7 +85,7 @@ public class Client {
             @Override
             public void onSocketConnectionSuccess(ConnectionInfo info, String action) {
                 manager.send(new STradePacketKeyExchange());
-//                manager.getPulseManager().setPulseSendable(new STradeCommOK());
+                manager.getPulseManager().setPulseSendable(new STradeCommOK());
             }
 
             @Override
@@ -97,42 +93,30 @@ public class Client {
                 ByteBuffer buffer = ByteBuffer.wrap(data.getHeadBytes());
                 buffer.order(ByteOrder.LITTLE_ENDIAN);
                 STradeBaseHead head = new STradeBaseHead(buffer);
+
+                if(head.wPid == AbsSendable.PID_TRADE_COMM_OK){
+                    manager.getPulseManager().feed();
+                }
+
+                if (head.wPid == AbsSendable.PID_TRADE_KEY_EXCHANGE) {
+                    STradePacketKeyExchangeResp exchange = new STradePacketKeyExchangeResp(data.getBodyBytes());
+//                    Log.e("STradePacketKeyExchange", exchange.toString());
+                    aesKey = OpensslHelper.genMD5(exchange.gy);
+//                    Log.e("genMD5", BytesUtils.toHexStringForLog(aesKey));
+                    manager.getPulseManager().pulse();
+                }
+
                 if (head.dwReqId == 0) {
                     return;
                 }
                 Callback callback = mRequestTable.get(head.dwReqId);
-                callback.onResult(data);
-
-//                if (head.wPid == AbsSendable.PID_TRADE_COMM_OK) {
-//                    manager.getPulseManager().feed();
-//                }
-//
-//                if (head.wPid == AbsSendable.PID_TRADE_GATE_ERROR) {
-//                    STradeGateError gateError = new STradeGateError(data.getHeadBytes(), data.getBodyBytes(), aesKey);
-//                }
-//
-                if (head.wPid == AbsSendable.PID_TRADE_KEY_EXCHANGE) {
-                    STradePacketKeyExchangeResp exchange = new STradePacketKeyExchangeResp(data.getBodyBytes());
-                    Log.e("STradePacketKeyExchange", exchange.toString());
-                    aesKey = OpensslHelper.genMD5(exchange.gy);
-                    Log.e("genMD5", BytesUtils.toHexStringForLog(aesKey));
+                if (callback != null) {
+                    if(head.wPid == AbsSendable.PID_TRADE_GATE_ERROR) {
+                        callback.onResult(false,data);
+                    }else{
+                        callback.onResult(true,data);
+                    }
                 }
-
-//                if (head.dwReqId == 1) {
-//
-//                } else if (head.dwReqId == 2) {
-//                    STradeVerificationCodeA resp = new STradeVerificationCodeA(data.getHeadBytes(), data.getBodyBytes());
-//                    byte[] picReal = resp.getPic();
-//                    Bitmap decodedByte = BitmapFactory.decodeByteArray(picReal, 0, picReal.length);
-//                    imageView.setImageBitmap(decodedByte);
-//                    szId = resp.szId;
-//                    Log.e("STradeVerificationCodeA", resp.toString());
-////                    manager.getPulseManager().pulse();
-//                } else if (head.dwReqId == 10) {
-//                    STradeGateLoginA gateLoginA = new STradeGateLoginA(data.getHeadBytes(), data.getBodyBytes(), aesKey);
-//                } else if (head.dwReqId == 5) {
-//
-//                }
 
             }
         });

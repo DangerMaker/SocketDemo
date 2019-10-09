@@ -16,9 +16,12 @@ public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() {
         int[] reserve = new int[4];
+        byte[] bytes = new byte[25];
 
         System.out.println(sizeof(new STradeGateUserInfo()));
         System.out.println(sizeof(reserve));
+        System.out.println(sizeof(bytes));
+
     }
 
 

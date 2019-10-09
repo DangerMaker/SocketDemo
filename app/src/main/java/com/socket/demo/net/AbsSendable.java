@@ -29,6 +29,7 @@ public abstract class AbsSendable implements ISendable {
         //fill header
         STradeBaseHead header = new STradeBaseHead();
         header.dwBodySize = header.dwRawSize = getBodyLength();
+        header.dwReqId = dwReqId;
         getHead(header);
         buffer.put(header.parse());
         //fill body
