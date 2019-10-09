@@ -16,7 +16,7 @@ import java.util.Set;
 
 public class YCParser {
 
-    public static Map<String, String> parseObject(String json) throws JSONException {
+    public static Map<String, String> parseObject(String json) {
         Map<String, String> map = new HashMap<>();
         Uri uri = Uri.parse(Constant.URI_DEFAULT_HELPER + json);
         Set<String> pn = uri.getQueryParameterNames();
@@ -38,7 +38,7 @@ public class YCParser {
         return map;
     }
 
-    public static List<Map<String, String>> parseArray(String json) throws JSONException {
+    public static List<Map<String, String>> parseArray(String json) {
         List<Map<String, String>> list = new ArrayList<>();
         Uri uri = Uri.parse(Constant.URI_DEFAULT_HELPER + json);
         Set<String> pn = uri.getQueryParameterNames();

@@ -5,7 +5,7 @@
     android:background="@color/trade_white"
     android:orientation="vertical">
 
-    <android.support.v7.widget.AppCompatCheckBox
+    <androidx.appcompat.widget.AppCompatCheckBox
         android:id="@+id/checkbox"
         style="@style/CompassCheckBox"
         android:layout_width="50dp"

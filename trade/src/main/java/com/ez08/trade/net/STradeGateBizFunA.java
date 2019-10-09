@@ -32,7 +32,6 @@ public class STradeGateBizFunA extends AbsResponse {
 
         szContent = new byte[body.length - sizeof(dwContentLen) - sizeof(reserve)];
         buffer.get(szContent);
-        Log.e("STradeGateBizFunA", NetUtil.byteToStr(szContent));
     }
 
     public String getResult(){

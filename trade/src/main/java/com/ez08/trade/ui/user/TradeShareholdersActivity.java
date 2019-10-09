@@ -65,33 +65,28 @@ public class TradeShareholdersActivity extends BaseActivity implements View.OnCl
         Client.getInstance().sendBiz(body, (success, data) -> {
             Log.e("sendBiz", data);
             if (success) {
-                try {
-                    List<Map<String, String>> result = YCParser.parseArray(data);
-                    for (int i = 0; i < result.size(); i++) {
-                        ShareHoldersEntity entity = new ShareHoldersEntity();
-                        entity.custid = result.get(i).get("custid");
-                        entity.regflag = result.get(i).get("regflag");
-                        entity.bondreg = result.get(i).get("bondreg");
-                        entity.opendate = result.get(i).get("opendate");
-                        entity.market = result.get(i).get("market");
-                        entity.secuid = result.get(i).get("secuid");
-                        entity.name = result.get(i).get("name");
-                        entity.fundid = result.get(i).get("fundid");
-                        entity.secuseq = result.get(i).get("secuseq");
-                        entity.status = result.get(i).get("status");
-                        list.add(entity);
-                    }
-
-                    mList.clear();
-                    mList.add(new TradeShareHoldersTitle());
-                    for (int i = 0; i < list.size(); i++) {
-                        mList.add(list.get(i).getItem());
-                    }
-                    adapter.clearAndAddAll(mList);
-                } catch (JSONException e) {
-
-
+                List<Map<String, String>> result = YCParser.parseArray(data);
+                for (int i = 0; i < result.size(); i++) {
+                    ShareHoldersEntity entity = new ShareHoldersEntity();
+                    entity.custid = result.get(i).get("custid");
+                    entity.regflag = result.get(i).get("regflag");
+                    entity.bondreg = result.get(i).get("bondreg");
+                    entity.opendate = result.get(i).get("opendate");
+                    entity.market = result.get(i).get("market");
+                    entity.secuid = result.get(i).get("secuid");
+                    entity.name = result.get(i).get("name");
+                    entity.fundid = result.get(i).get("fundid");
+                    entity.secuseq = result.get(i).get("secuseq");
+                    entity.status = result.get(i).get("status");
+                    list.add(entity);
                 }
+
+                mList.clear();
+                mList.add(new TradeShareHoldersTitle());
+                for (int i = 0; i < list.size(); i++) {
+                    mList.add(list.get(i).getItem());
+                }
+                adapter.clearAndAddAll(mList);
             }
         });
     }
