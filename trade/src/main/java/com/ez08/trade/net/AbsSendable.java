@@ -15,6 +15,7 @@ public abstract class AbsSendable implements ISendable {
     public static final int PID_TRADE_GATE_LOGIN = 2010;
     public static final int PID_TRADE_GATE_BIZFUN = 2015;
     public static final int PID_TRADE_GATE_ERROR = 2009;
+    public static final int PID_TRADE_SESSION_UPDATE = 310;
 
 
 

@@ -165,6 +165,11 @@ public class TradeLoginActivity extends BaseActivity implements View.OnClickList
         tradeGateLogin.setBody(defaultItem, usernameEdit.getText().toString(), passwordEdit.getText().toString(),
                 checkEdit.getText().toString());
         Client.getInstance().send(tradeGateLogin, (success, data) -> {
+
+            Client.getInstance().strUserType = defaultItem;
+            Client.getInstance().userId =  usernameEdit.getText().toString();
+            Client.getInstance().password = passwordEdit.getText().toString();
+
             STradeGateLoginA gateLoginA = new STradeGateLoginA(data.getHeadBytes(), data.getBodyBytes(), Client.getInstance().aesKey);
             List<TradeUser> list = new ArrayList<>();
             for (int i = 0; i < gateLoginA.list.size(); i++) {

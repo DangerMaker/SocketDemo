@@ -63,6 +63,8 @@ public class STradeGateLogin extends AbsSendable {
     byte[] szReserved = new byte[19];
     byte bIsSessionId = 0;
     byte bIgnoreVerificationCode = 0;
+   //
+    byte[] btSessionId = new byte[30];
 
     String userType;
     String userId;
@@ -78,7 +80,17 @@ public class STradeGateLogin extends AbsSendable {
         this.userId = userId;
         this.password = password;
         this.verifyCode = checkCode;
+        bIsSessionId = 0;
     }
+
+    public void setBody(String userType, String userId, String password, byte[] btSessionId){
+        this.userType = userType;
+        this.userId = userId;
+        this.password = password;
+        NetUtil.byteCopy(btSessionId,this.btSessionId);
+        bIsSessionId = 1;
+    }
+
 
     @Override
     protected void getHead(STradeBaseHead header) {
@@ -110,9 +122,14 @@ public class STradeGateLogin extends AbsSendable {
         bb.put(sz_inputid);
         bb.put(sz_market);
         bb.put(btMD5_of_Client);
-        bb.put(szVerificationId);
-        bb.put(szVerificationCode);
+        if(bIsSessionId == 0) {
+            bb.put(szVerificationId);
+            bb.put(szVerificationCode);
+        }else{
+            bb.put(btSessionId);
+        }
         bb.put(szReserved);
+        bb.put(bIsSessionId);
     }
 
     @Override

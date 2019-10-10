@@ -1,9 +1,13 @@
 package com.ez08.trade.net;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 
+import com.ez08.trade.ui.TradeMenuActivity;
+import com.ez08.trade.user.TradeUser;
+import com.ez08.trade.user.UserHelper;
 import com.xuhao.didi.core.pojo.OriginalData;
 import com.xuhao.didi.core.protocol.IReaderProtocol;
 import com.xuhao.didi.socket.client.impl.client.action.ActionDispatcher;
@@ -16,7 +20,9 @@ import com.xuhao.didi.socket.client.sdk.client.connection.NoneReconnect;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.List;
 
 import static com.ez08.trade.net.Constant.BIZ_PORT;
 import static com.ez08.trade.net.Constant.IP;
@@ -25,6 +31,11 @@ public class Client {
 
     IConnectionManager manager;
     public byte[] aesKey = null;
+    public byte[] sessionId = null;
+    public String strUserType;
+    public String userId;
+    public String password;
+
     private Hashtable<Integer, Callback> mRequestTable;
 
     private Client() {
@@ -97,7 +108,36 @@ public class Client {
                     aesKey = OpensslHelper.genMD5(exchange.gy);
 //                    Log.e("genMD5", BytesUtils.toHexStringForLog(aesKey));
                     manager.getPulseManager().pulse();
+                    if(sessionId != null){
+                        List<TradeUser> list = new ArrayList<>();
+                        STradeGateLogin gateLogin = new STradeGateLogin();
+                        gateLogin.setBody(strUserType,userId,password,sessionId);
+                        send(gateLogin, new Callback() {
+                            @Override
+                            public void onResult(boolean success, OriginalData data) {
+                                STradeGateLoginA gateLoginA = new STradeGateLoginA(data.getHeadBytes(), data.getBodyBytes(), Client.getInstance().aesKey);
+                                for (int i = 0; i < gateLoginA.list.size(); i++) {
+                                    TradeUser user = new TradeUser();
+                                    user.market = NetUtil.byteToStr(gateLoginA.list.get(i).sz_market);
+                                    user.name = NetUtil.byteToStr(gateLoginA.list.get(i).sz_name);
+                                    user.fundid = gateLoginA.list.get(i).n64_fundid + "";
+                                    user.custcert = NetUtil.byteToStr(gateLoginA.list.get(i).sz_custcert);
+                                    user.custid = gateLoginA.list.get(i).n64_custid + "";
+                                    user.secuid = NetUtil.byteToStr(gateLoginA.list.get(i).sz_secuid);
+                                    list.add(user);
+                                }
+
+                                UserHelper.setUserList(list);
+                            }
+                        });
+                    }
                     return;
+                }
+
+                if (head.wPid == AbsSendable.PID_TRADE_SESSION_UPDATE) {
+                    STradeSessionUpdateA session = new STradeSessionUpdateA(data.getHeadBytes(),
+                            data.getBodyBytes(),aesKey);
+                    sessionId = session.sSessionId;
                 }
 
                 if (head.dwReqId == 0) {
