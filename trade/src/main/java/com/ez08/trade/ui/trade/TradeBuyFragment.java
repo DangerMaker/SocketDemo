@@ -13,6 +13,9 @@ import com.ez08.trade.Constant;
 import com.ez08.trade.R;
 import com.ez08.trade.net.Callback;
 import com.ez08.trade.net.Client;
+import com.ez08.trade.net.STradeHQOrderItem;
+import com.ez08.trade.net.STradeHQQuery;
+import com.ez08.trade.net.STradeHQQueryA;
 import com.ez08.trade.tools.CommonUtils;
 import com.ez08.trade.tools.DialogUtils;
 import com.ez08.trade.tools.MathUtils;
@@ -24,10 +27,7 @@ import com.ez08.trade.ui.view.AdjustEditText;
 import com.ez08.trade.ui.view.FiveAndTenView;
 import com.ez08.trade.user.TradeUser;
 import com.ez08.trade.user.UserHelper;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.xuhao.didi.core.pojo.OriginalData;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -170,44 +170,28 @@ public class TradeBuyFragment extends BaseFragment implements OptionsDelegate {
                 price + "," + "," + "," + "," + "," + "," + "," + "," + "," +
                 ";";
 
-//        BizRequest request = new BizRequest();
-//        request.setBody(body);
-//        request.setCallback(new Callback() {
-//            @Override
-//            public void callback(Client client, Response data) {
-//                dismissBusyDialog();
-//                Log.e(TAG, data.getData());
-//                try {
-//                    if (data.isSucceed()) {
-//                        JSONObject jsonObject = new JSONObject(data.getData());
-//                        String content = jsonObject.getString("content");
-//                        Uri uri = Uri.parse(Constant.URI_DEFAULT_HELPER + content);
-//                        Set<String> pn = uri.getQueryParameterNames();
-//                        for (Iterator it = pn.iterator(); it.hasNext(); ) {
-//                            String key = it.next().toString();
-//                            if ("TBL_OUT".equals(key)) {
-//                                String out = uri.getQueryParameter(key);
-//                                String[] split = out.split(";");
-//                                String[] var = split[1].split(",");
-//                                String max = var[0];
-//                                tradeViewImpl.setMax(max);
-//                            }
-//                        }
-//
-//                    } else {
-//                        JSONObject jsonObject = new JSONObject(data.getData());
-//                        String msg = jsonObject.getString("szError");
-//                        DialogUtils.showSimpleDialog(mContext, msg);
-//                    }
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//
-//                }
-//            }
-//        });
-//
-//        showBusyDialog();
-//        ClientHelper.get().send(request);
+        Client.getInstance().sendBiz(body, (success, data) -> {
+            Log.e("sendBiz", data);
+            dismissBusyDialog();
+            if (success) {
+                Uri uri = Uri.parse(Constant.URI_DEFAULT_HELPER + data);
+                Set<String> pn = uri.getQueryParameterNames();
+                for (Iterator it = pn.iterator(); it.hasNext(); ) {
+                    String key = it.next().toString();
+                    if ("TBL_OUT".equals(key)) {
+                        String out = uri.getQueryParameter(key);
+                        String[] split = out.split(";");
+                        String[] var = split[1].split(",");
+                        String max = var[0];
+                        tradeViewImpl.setMax(max);
+                    }
+                }
+            }else{
+                DialogUtils.showSimpleDialog(mContext, data);
+            }
+        });
+
+        showBusyDialog();
     }
 
     @Override
@@ -245,115 +229,100 @@ public class TradeBuyFragment extends BaseFragment implements OptionsDelegate {
     }
 
     private void post(String code, String price, String qty, String postFlag) {
-//        TradeUser user = UserHelper.getUserByMarket(stockEntity.market);
-//        if (user == null) {
-//            return;
-//        }
-//
-//        String body = "FUN=410411&TBL_IN=market,secuid,fundid,stkcode,bsflag,price,qty,ordergroup," +
-//                "bankcode,creditid,creditflag,remark,targetseat,promiseno,risksno,autoflag," +
-//                "enddate,linkman,linkway,linkmarket,linksecuid,sorttype,mergematchcode,mergematchdate" +
-////                "oldorderid,prodcode,pricetype,blackflag,dzsaletype,risksignsno" +
-//                ";" +
-//                stockEntity.market + "," +
-//                user.secuid + "," +
-//                user.fundid + "," +
-//                code + "," +
-//                postFlag + "," +
-//                price + "," +
-//                qty + "," +
-//                "0" +
-////                "," + "," + "," + "," + ","
-//                "," + "," + "," + "," + "," +
-//                "," + "," + "," + "," + "," + "," + "," + "," + "," + "," + "," +
-//                ";";
-//
-//        BizRequest request = new BizRequest();
-//        request.setBody(body);
-//        request.setCallback((client, data) -> {
-//            dismissBusyDialog();
-//            Log.e(TAG, data.getData());
-//            try {
-//                if (data.isSucceed()) {
-//                    JSONObject jsonObject = new JSONObject(data.getData());
-//                    String content = jsonObject.getString("content");
-//                    Uri uri = Uri.parse(Constant.URI_DEFAULT_HELPER + content);
-//                    Set<String> pn = uri.getQueryParameterNames();
-//                    for (Iterator it = pn.iterator(); it.hasNext(); ) {
-//                        String key = it.next().toString();
-//                        if ("TBL_OUT".equals(key)) {
-//                            String out = uri.getQueryParameter(key);
-//                            String[] split = out.split(";");
-//                            String[] var = split[1].split(",");
-//                            DialogUtils.showSimpleDialog(mContext, "委托成功" + "\n" +
-//                                    "委托序号：" + var[0] + "\n" +
-//                                    "合同序号：" + var[1] + "\n" +
-//                                    "委托批号：" + var[2]
-//                            );
-//                        }
-//                    }
-//
-//                } else {
-//                    JSONObject jsonObject = new JSONObject(data.getData());
-//                    String msg = jsonObject.getString("szError");
-//                    DialogUtils.showSimpleDialog(mContext, msg);
-//                }
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//
-//            }
-//        });
-//
-//        showBusyDialog();
-//        ClientHelper.get().send(request);
+        TradeUser user = UserHelper.getUserByMarket(stockEntity.market);
+        if (user == null) {
+            return;
+        }
+
+        String body = "FUN=410411&TBL_IN=market,secuid,fundid,stkcode,bsflag,price,qty,ordergroup," +
+                "bankcode,creditid,creditflag,remark,targetseat,promiseno,risksno,autoflag," +
+                "enddate,linkman,linkway,linkmarket,linksecuid,sorttype,mergematchcode,mergematchdate" +
+//                "oldorderid,prodcode,pricetype,blackflag,dzsaletype,risksignsno" +
+                ";" +
+                stockEntity.market + "," +
+                user.secuid + "," +
+                user.fundid + "," +
+                code + "," +
+                postFlag + "," +
+                price + "," +
+                qty + "," +
+                "0" +
+//                "," + "," + "," + "," + ","
+                "," + "," + "," + "," + "," +
+                "," + "," + "," + "," + "," + "," + "," + "," + "," + "," + "," +
+                ";";
+
+        Client.getInstance().sendBiz(body, (success, data) -> {
+            Log.e("sendBiz", data);
+            dismissBusyDialog();
+            if (success) {
+                Uri uri = Uri.parse(Constant.URI_DEFAULT_HELPER + data);
+                Set<String> pn = uri.getQueryParameterNames();
+                for (Iterator it = pn.iterator(); it.hasNext(); ) {
+                    String key = it.next().toString();
+                    if ("TBL_OUT".equals(key)) {
+                        String out = uri.getQueryParameter(key);
+                        String[] split = out.split(";");
+                        String[] var = split[1].split(",");
+                        DialogUtils.showSimpleDialog(mContext, "委托成功" + "\n" +
+                                "委托序号：" + var[0] + "\n" +
+                                "合同序号：" + var[1] + "\n" +
+                                "委托批号：" + var[2]
+                        );
+                    }
+                }
+            }else{
+                DialogUtils.showSimpleDialog(mContext,data);
+            }
+        });
+
+        showBusyDialog();
     }
 
     private void getHQQuery(final TradeStockEntity entity) {
-//        QueryRequest request = new QueryRequest();
-//        request.setBody(entity.market, entity.stkcode);
-//        request.setCallback((client, data) -> {
-//            dismissBusyDialog();
-//            try {
-//                if (data.isSucceed()) {
-//                    Log.e(TAG, data.getData());
-//                    JSONObject jsonObject = new JSONObject(data.getData());
-//                    entity.fOpen = jsonObject.getDouble("fOpen");
-//                    entity.fLastClose = jsonObject.getDouble("fLastClose");
-//                    entity.fHigh = jsonObject.getDouble("fHigh");
-//                    entity.fLow = jsonObject.getDouble("fLow");
-//                    entity.fNewest = jsonObject.getDouble("fNewest");
-//
-//                    JSONArray jsonArray = jsonObject.getJSONArray("ask");
-//                    List<TradeStockEntity.Dang> list1 = new ArrayList<>();
-//                    for (int i = 0; i < jsonArray.length(); i++) {
-//                        TradeStockEntity.Dang dang = new TradeStockEntity.Dang();
-//                        dang.fOrder = jsonArray.getJSONObject(i).getInt("fOrder");
-//                        dang.fPrice = jsonArray.getJSONObject(i).getDouble("fPrice");
-//                        list1.add(dang);
-//                    }
-//                    entity.ask = list1;
-//
-//                    JSONArray jsonArray1 = jsonObject.getJSONArray("bid");
-//                    List<TradeStockEntity.Dang> list2 = new ArrayList<>();
-//                    for (int i = 0; i < jsonArray1.length(); i++) {
-//                        TradeStockEntity.Dang dang = new TradeStockEntity.Dang();
-//                        dang.fOrder = jsonArray1.getJSONObject(i).getInt("fOrder");
-//                        dang.fPrice = jsonArray1.getJSONObject(i).getDouble("fPrice");
-//                        list2.add(dang);
-//                    }
-//                    entity.bid = list2;
-//
-//                    tradeViewImpl.setStockEntity(stockEntity);
-//                    fiveAndTenView.setLevel1(stockEntity);
-//                    setIndex(stockEntity);
-//                }
-//            } catch (JSONException e) {
-//                e.printStackTrace();
-//            }
-//        });
-//
-//        showBusyDialog();
-//        ClientHelper.get().send(request);
+        Client.getInstance().send(new STradeHQQuery(YiChuangUtils.getMarketByTag(entity.market), entity.stkcode), new Callback() {
+            @Override
+            public void onResult(boolean success, OriginalData data) {
+                dismissBusyDialog();
+                if (success) {
+                    STradeHQQueryA queryA = new STradeHQQueryA(data.getHeadBytes(), data.getBodyBytes(),
+                            Client.getInstance().aesKey);
+
+                    entity.fOpen = queryA.fOpen;
+                    entity.fLastClose = queryA.fLastClose;
+                    entity.fHigh = queryA.fHigh;
+                    entity.fLow = queryA.fLow;
+                    entity.fNewest = queryA.fNewest;
+
+                    STradeHQOrderItem[] askItems = queryA.ask;
+                    List<TradeStockEntity.Dang> list1 = new ArrayList<>();
+                    for (int i = 0; i < askItems.length; i++) {
+                        TradeStockEntity.Dang dang = new TradeStockEntity.Dang();
+                        dang.fOrder = (int)askItems[i].fOrder;
+                        dang.fPrice = askItems[i].fPrice;
+                        list1.add(dang);
+                    }
+                    entity.ask = list1;
+
+                    STradeHQOrderItem[] bidItems = queryA.bid;
+                    List<TradeStockEntity.Dang> list2 = new ArrayList<>();
+                    for (int i = 0; i < bidItems.length; i++) {
+                        TradeStockEntity.Dang dang = new TradeStockEntity.Dang();
+                        dang.fOrder = (int)bidItems[i].fOrder;
+                        dang.fPrice = bidItems[i].fPrice;
+                        list2.add(dang);
+                    }
+                    entity.bid = list2;
+
+                    tradeViewImpl.setStockEntity(stockEntity);
+                    fiveAndTenView.setLevel1(stockEntity);
+                    setIndex(stockEntity);
+                }
+
+            }
+        });
+
+        showBusyDialog();
     }
 
     public void setStockCode(String stockCode) {

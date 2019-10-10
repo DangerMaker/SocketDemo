@@ -134,13 +134,11 @@ public class Client {
                     return;
                 }
 
+
                 if (head.wPid == AbsSendable.PID_TRADE_SESSION_UPDATE) {
                     STradeSessionUpdateA session = new STradeSessionUpdateA(data.getHeadBytes(),
                             data.getBodyBytes(),aesKey);
                     sessionId = session.sSessionId;
-                }
-
-                if (head.dwReqId == 0) {
                     return;
                 }
 
@@ -186,4 +184,5 @@ public class Client {
             }
         });
     }
+
 }

@@ -1,6 +1,9 @@
 package com.ez08.trade.net;
 
+import android.util.Log;
+
 import com.xuhao.didi.core.iocore.interfaces.ISendable;
+import com.xuhao.didi.core.utils.BytesUtils;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -16,7 +19,7 @@ public abstract class AbsSendable implements ISendable {
     public static final int PID_TRADE_GATE_BIZFUN = 2015;
     public static final int PID_TRADE_GATE_ERROR = 2009;
     public static final int PID_TRADE_SESSION_UPDATE = 310;
-
+    public static final int PID_TRADE_HQ_QUERY = 502;
 
 
     protected int sizeof(Object type){
@@ -35,6 +38,7 @@ public abstract class AbsSendable implements ISendable {
         buffer.put(header.parse());
         //fill body
         getBody(buffer);
+        Log.e("STradeBaseHead Request", header.toString());
         return buffer.array();
     }
 

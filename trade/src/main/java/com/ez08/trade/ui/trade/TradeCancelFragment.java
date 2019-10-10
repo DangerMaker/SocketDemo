@@ -149,7 +149,7 @@ public class TradeCancelFragment extends BaseFragment implements Interval {
                         String out = uri.getQueryParameter(key);
                         String[] split = out.split(";");
                         String[] var = split[1].split(",");
-                        DialogUtils.showSimpleDialog(mContext, var[1]);
+                        DialogUtils.showSimpleDialog(mContext, var[0]);
                     }
                 }
             }else{

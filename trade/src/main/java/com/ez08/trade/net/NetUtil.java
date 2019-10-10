@@ -1,5 +1,9 @@
 package com.ez08.trade.net;
 
+import java.io.UnsupportedEncodingException;
+
+import static com.ez08.trade.net.Constant.UTF8;
+
 public class NetUtil {
 
     public static String intToIp(int ipInt) {
@@ -9,20 +13,18 @@ public class NetUtil {
                 .toString();
     }
 
-    public static int sizeOf(Object type){
-        if(type instanceof Integer){
+    public static int sizeOf(Object type) {
+        if (type instanceof Integer) {
             return 4;
-        }else if(type instanceof Byte){
+        } else if (type instanceof Byte) {
             return 1;
-        }else if(type instanceof STradeGateUserInfo){
+        } else if (type instanceof STradeGateUserInfo) {
             return ((STradeGateUserInfo) type).getLength();
-        }
-        else if(type instanceof byte[]){
+        } else if (type instanceof byte[]) {
             return ((byte[]) type).length;
-        }else if(type instanceof int[]){
+        } else if (type instanceof int[]) {
             return ((int[]) type).length * 4;
-        }
-        else{
+        } else {
             return 0;
         }
     }
@@ -43,9 +45,21 @@ public class NetUtil {
 
     }
 
-    public static void byteCopy(byte[] origin,byte[] target){
+    public static void byteCopy(byte[] origin, byte[] target) {
         for (int i = 0; i < origin.length; i++) {
             target[i] = origin[i];
+        }
+    }
+
+    public static void byteCopy(String string, byte[] target) {
+        try {
+            byte[] origin = string.getBytes(UTF8);
+            for (int i = 0; i < origin.length; i++) {
+                target[i] = origin[i];
+            }
+
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
         }
     }
 }
